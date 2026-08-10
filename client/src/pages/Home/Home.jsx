@@ -13,7 +13,9 @@ import { useTheme } from "../../context/ThemeContext";
 
 import "./Home.css";
 
-export default function Home() {
+export default function Home({
+    onLogin,
+}) {
     const { theme, setTheme } = useTheme();
 
     const isDnd = theme === "dnd";
