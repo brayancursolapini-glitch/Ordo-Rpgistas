@@ -1,0 +1,1030 @@
+.home {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #050505;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.home-background {
+    position: absolute;
+    inset: 0;
+    display: flex;
+}
+
+.world {
+    position: relative;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+
+    background-position: center;
+    background-size: cover;
+
+    transition:
+        width var(--transition),
+        filter var(--transition);
+}
+
+.world-dnd {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(29, 59, 38, 0.15),
+            rgba(13, 20, 13, 0.85)
+        ),
+        url("/images/dnd-home.jpg");
+
+    background-color: #263d2b;
+}
+
+.world-ordem {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(10, 5, 15, 0.15),
+            rgba(4, 3, 7, 0.9)
+        ),
+        url("/images/ordem-home.jpg");
+
+    background-color: #130e18;
+}
+
+.world-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 45%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
+}
+
+.world-content {
+    position: absolute;
+    left: 50%;
+    bottom: 13%;
+
+    width: min(450px, 80%);
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    z-index: 2;
+
+    text-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.9);
+}
+
+.world-label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+
+    letter-spacing: 0.35em;
+
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.world-content h2 {
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(
+        24px,
+        3vw,
+        46px
+    );
+
+    line-height: 1.05;
+
+    letter-spacing: 0.08em;
+}
+
+.world-dnd h2 {
+    color: #f0d18a;
+}
+
+.world-ordem h2 {
+    color: #e8d9ec;
+}
+
+.world-content p {
+    margin: 18px auto 25px;
+
+    max-width: 370px;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.75
+    );
+
+    line-height: 1.6;
+
+    font-size: 13px;
+}
+
+.world-enter {
+    padding: 11px 22px;
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.3
+    );
+
+    border-radius: 3px;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.25
+    );
+
+    color: white;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background 300ms,
+        border-color 300ms,
+        transform 300ms;
+}
+
+.world-enter:hover {
+    transform: translateY(-3px);
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.1
+    );
+
+    border-color: rgba(
+        255,
+        255,
+        255,
+        0.7
+    );
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(
+        -50%,
+        -50%
+    );
+
+    z-index: 10;
+
+    width: min(
+        520px,
+        85vw
+    );
+
+    padding: 35px;
+
+    text-align: center;
+
+    background: rgba(
+        5,
+        5,
+        5,
+        0.58
+    );
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.12
+    );
+
+    backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 30px 100px rgba(
+            0,
+            0,
+            0,
+            0.6
+        );
+}
+
+.hero-symbol {
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    color: var(--gold);
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(
+                215,
+                174,
+                87,
+                0.7
+            )
+        );
+}
+
+.hero-small {
+    font-size: 9px;
+
+    letter-spacing: 0.5em;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.55
+    );
+}
+
+.hero h1 {
+    margin-top: 10px;
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(
+        35px,
+        5vw,
+        62px
+    );
+
+    letter-spacing: 0.16em;
+
+    line-height: 0.95;
+}
+
+.hero h1 strong {
+    display: block;
+
+    font-size: 0.46em;
+
+    margin-top: 10px;
+
+    letter-spacing: 0.5em;
+
+    color: var(--gold);
+}
+
+.hero-subtitle {
+    margin-top: 15px;
+
+    font-family: "Cinzel", serif;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.75
+    );
+}
+
+.hero-divider {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 20px 0;
+
+    color: var(--gold);
+
+    font-size: 11px;
+}
+
+.hero-divider span {
+    width: 55px;
+
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold)
+    );
+}
+
+.hero-divider span:last-child {
+    background: linear-gradient(
+        90deg,
+        var(--gold),
+        transparent
+    );
+}
+
+.hero-description {
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.65
+    );
+}
+
+.hero-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.magical-button {
+    position: relative;
+
+    min-width: 170px;
+
+    padding: 13px 22px;
+
+    border-radius: 3px;
+
+    color: white;
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+
+    overflow: hidden;
+}
+
+.magical-button-primary {
+    background:
+        linear-gradient(
+            135deg,
+            #b48a3c,
+            #e4c06c,
+            #98702d
+        );
+
+    color: #171006;
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            215,
+            174,
+            87,
+            0.25
+        );
+}
+
+.magical-button-secondary {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.25
+    );
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu-toggle {
+    position: fixed;
+
+    top: 22px;
+    left: 22px;
+
+    z-index: 100;
+
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.45
+    );
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.18
+    );
+
+    color: white;
+
+    backdrop-filter: blur(10px);
+}
+
+.menu-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 110;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.55
+    );
+
+    backdrop-filter: blur(3px);
+}
+
+.side-menu {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: min(
+        320px,
+        85vw
+    );
+
+    height: 100vh;
+
+    z-index: 120;
+
+    padding: 25px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(20, 20, 20, 0.98),
+            rgba(7, 7, 7, 0.99)
+        );
+
+    border-right: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.12
+    );
+
+    box-shadow:
+        20px 0 70px
+        rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
+}
+
+.side-menu-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 15px;
+
+    border-bottom: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.1
+    );
+}
+
+.side-menu-header small {
+    color: var(--gold);
+
+    letter-spacing: 0.4em;
+
+    font-size: 9px;
+}
+
+.side-menu-header h2 {
+    font-family: "Cinzel", serif;
+
+    letter-spacing: 0.12em;
+}
+
+.side-menu-header button {
+    background: none;
+
+    color: white;
+}
+
+.menu-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    padding: 13px 10px;
+
+    margin-bottom: 3px;
+
+    border-radius: 4px;
+
+    background: transparent;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.7
+    );
+
+    text-align: left;
+
+    transition:
+        color 200ms,
+        background 200ms;
+}
+
+.menu-item:hover {
+    color: white;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
+}
+
+.menu-item svg {
+    color: var(--gold);
+}
+
+
+/* =========================================
+   TOP ACTIONS
+========================================= */
+
+.top-actions {
+    position: fixed;
+
+    top: 22px;
+    right: 22px;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.login-button {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 17px;
+
+    border-radius: 4px;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.45
+    );
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.2
+    );
+
+    color: white;
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================================
+   THEME SWITCHER
+========================================= */
+
+.theme-switcher {
+    display: flex;
+
+    padding: 3px;
+
+    border-radius: 30px;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.5
+    );
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.15
+    );
+
+    backdrop-filter: blur(10px);
+}
+
+.theme-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 8px 11px;
+
+    border-radius: 20px;
+
+    background: transparent;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.55
+    );
+
+    font-size: 10px;
+
+    transition: 300ms;
+}
+
+.theme-option.active {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.12
+    );
+
+    color: white;
+}
+
+
+/* =========================================
+   PARTICLES
+========================================= */
+
+.particles {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+
+    left: var(--left);
+
+    bottom: -20px;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    opacity: 0;
+
+    animation:
+        particle-float
+        var(--duration)
+        var(--delay)
+        infinite
+        ease-in;
+}
+
+@keyframes particle-float {
+    0% {
+        transform:
+            translateY(0)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.25;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(80px)
+            scale(1.4);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   SCROLL
+========================================= */
+
+.scroll-indicator {
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.5
+    );
+
+    font-size: 9px;
+
+    letter-spacing: 0.25em;
+}
+
+.scroll-indicator svg {
+    animation:
+        scroll-bounce
+        2s infinite;
+}
+
+@keyframes scroll-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+
+/* =========================================
+   SYSTEM INDICATOR
+========================================= */
+
+.theme-indicator {
+    position: absolute;
+
+    bottom: 22px;
+
+    right: 25px;
+
+    z-index: 20;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 3px;
+}
+
+.theme-indicator span {
+    font-size: 8px;
+
+    letter-spacing: 0.3em;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.4
+    );
+}
+
+.theme-indicator strong {
+    font-family: "Cinzel", serif;
+
+    font-size: 10px;
+
+    letter-spacing: 0.12em;
+
+    color: var(--gold);
+}
+
+
+/* =========================================
+   LOADER
+========================================= */
+
+.intro-loader {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #030303;
+
+    color: white;
+}
+
+.intro-symbol {
+    font-size: 40px;
+
+    color: var(--gold);
+
+    margin-bottom: 20px;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(
+                215,
+                174,
+                87,
+                0.7
+            )
+        );
+}
+
+.intro-loader h1 {
+    font-family: "Cinzel", serif;
+
+    font-size: 26px;
+
+    font-weight: 500;
+}
+
+.intro-loader p {
+    margin-top: 10px;
+
+    color: rgba(
+        255,
+        255,
+        255,
+        0.45
+    );
+
+    font-size: 10px;
+
+    letter-spacing: 0.2em;
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 800px) {
+    .home-background {
+        flex-direction: column;
+    }
+
+    .world {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .world-content {
+        bottom: 10%;
+
+        width: 90%;
+    }
+
+    .world-content h2 {
+        font-size: 25px;
+    }
+
+    .hero {
+        width: 90vw;
+
+        padding: 25px;
+    }
+
+    .hero-description {
+        display: none;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .magical-button {
+        width: 100%;
+    }
+
+    .top-actions {
+        right: 12px;
+    }
+
+    .theme-switcher span {
+        display: none;
+    }
+
+    .theme-option {
+        padding: 9px;
+    }
+
+    .login-button {
+        padding: 10px;
+    }
+
+    .login-button svg {
+        display: none;
+    }
+
+    .theme-indicator {
+        display: none;
+    }
+}
