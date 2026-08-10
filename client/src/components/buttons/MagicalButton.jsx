@@ -4,9 +4,11 @@ export default function MagicalButton({
     children,
     onClick,
     variant = "primary",
+    type = "button",
 }) {
     return (
         <motion.button
+            type={type}
             className={`magical-button magical-button-${variant}`}
             onClick={onClick}
             whileHover={{
@@ -22,7 +24,9 @@ export default function MagicalButton({
                 damping: 20,
             }}
         >
-            <span>{children}</span>
+            <span>
+                {children}
+            </span>
         </motion.button>
     );
 }
