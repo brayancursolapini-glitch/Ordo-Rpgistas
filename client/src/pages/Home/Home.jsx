@@ -123,6 +123,7 @@ export default function Home({
 
                 <motion.button
                     className="login-button"
+                    onClick={onLogin}
                     whileHover={{
                         scale: 1.05,
                     }}
