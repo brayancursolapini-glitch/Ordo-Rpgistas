@@ -15,6 +15,7 @@ import "./Home.css";
 
 export default function Home({
     onLogin,
+    onRegister,
 }) {
     const { theme, setTheme } = useTheme();
 
@@ -188,7 +189,9 @@ export default function Home({
                         Criar minha conta
                     </MagicalButton>
 
-                    <MagicalButton variant="secondary">
+                    <MagicalButton variant="secondary"
+                         onClick={onRegister}
+                        >
                         Conheça o RPG
                     </MagicalButton>
                 </div>
