@@ -24,12 +24,20 @@ export default function Home({
     return (
         <main className="home">
 
+            {/* =====================================================
+                FUNDOS DOS DOIS SISTEMAS
+            ====================================================== */}
+
             <div className="home-background">
 
+                {/* ================= D&D ================= */}
+
                 <div className="world world-dnd">
+
                     <div className="world-overlay" />
 
                     <div className="world-content">
+
                         <span className="world-label">
                             UM MUNDO DE AVENTURAS
                         </span>
@@ -48,20 +56,24 @@ export default function Home({
 
                         <button
                             className="world-enter"
-                            onClick={() =>
-                                setTheme("dnd")
-                            }
+                            onClick={() => setTheme("dnd")}
                         >
                             Entrar neste mundo
                         </button>
+
                     </div>
+
                 </div>
 
 
+                {/* ================= ORDEM ================= */}
+
                 <div className="world world-ordem">
+
                     <div className="world-overlay" />
 
                     <div className="world-content">
+
                         <span className="world-label">
                             A REALIDADE NÃO É O QUE PARECE
                         </span>
@@ -81,98 +93,138 @@ export default function Home({
 
                         <button
                             className="world-enter"
-                            onClick={() =>
-                                setTheme("ordem")
-                            }
+                            onClick={() => setTheme("ordem")}
                         >
                             Entrar neste mundo
                         </button>
+
                     </div>
+
                 </div>
 
             </div>
 
 
+            {/* =====================================================
+                PARTÍCULAS
+            ====================================================== */}
+
             <div className="particles">
-                {Array.from({
-                    length: 25,
-                }).map((_, index) => (
-                    <span
-                        key={index}
-                        className="particle"
-                        style={{
-                            "--delay": `${
-                                Math.random() * 8
-                            }s`,
-                            "--left": `${
-                                Math.random() * 100
-                            }%`,
-                            "--duration": `${
-                                5 +
-                                Math.random() * 8
-                            }s`,
-                        }}
-                    />
-                ))}
+
+                {Array.from({ length: 25 }).map(
+                    (_, index) => (
+                        <span
+                            key={index}
+                            className="particle"
+                            style={{
+                                "--delay": `${Math.random() * 8}s`,
+                                "--left": `${Math.random() * 100}%`,
+                                "--duration": `${5 + Math.random() * 8}s`,
+                            }}
+                        />
+                    )
+                )}
+
             </div>
 
 
+            {/* =====================================================
+                MENU
+            ====================================================== */}
+
             <SideMenu />
 
+
+            {/* =====================================================
+                BOTÕES SUPERIORES
+            ====================================================== */}
+
             <div className="top-actions">
+
                 <ThemeSwitcher />
 
                 <motion.button
                     className="login-button"
                     onClick={onLogin}
+
                     whileHover={{
                         scale: 1.05,
                     }}
+
                     whileTap={{
                         scale: 0.95,
                     }}
                 >
+
                     <LogIn size={18} />
+
                     Entrar
+
                 </motion.button>
+
             </div>
 
 
+            {/* =====================================================
+                PAINEL CENTRAL
+            ====================================================== */}
+
             <motion.section
-    className="hero"
-    initial={{
-        opacity: 0,
-        x: "-50%",
-        y: 20,
-    }}
-    animate={{
-        opacity: 1,
-        x: "-50%",
-        y: 0,
-    }}
-    transition={{
-        delay: 1.8,
-        duration: 1,
-    }}
->
+                className="hero"
+
+                initial={{
+                    opacity: 0,
+                    x: "-50%",
+                    y: 20,
+                }}
+
+                animate={{
+                    opacity: 1,
+                    x: "-50%",
+                    y: 0,
+                }}
+
+                transition={{
+                    delay: 1.8,
+                    duration: 1,
+                }}
             >
+
+                {/* ESTRELA */}
 
                 <div className="hero-symbol">
                     <Sparkles />
                 </div>
 
-                <span className="hero-small">
+
+                {/* BEM-VINDO */}
+
+                <span className="hero-welcome">
                     BEM-VINDO À
                 </span>
 
-                <h1>
+
+                {/* TÍTULO */}
+
+                <h1 className="hero-title">
+
                     ORDO
-                    <strong>RPGISTAS</strong>
+
+                    <span className="hero-subtitle">
+                        RPGISTAS
+                    </span>
+
                 </h1>
 
-                <p className="hero-subtitle">
+
+                {/* FRASE */}
+
+                <p className="hero-tagline">
                     Onde histórias ganham vida.
                 </p>
+
+
+                {/* DIVISOR */}
 
                 <div className="hero-divider">
                     <span />
@@ -180,58 +232,89 @@ export default function Home({
                     <span />
                 </div>
 
+
+                {/* DESCRIÇÃO */}
+
                 <p className="hero-description">
+
                     Um lugar onde você e seus amigos
                     podem criar mundos, viver aventuras
                     e escrever histórias que nunca
                     acontecerão duas vezes da mesma forma.
+
                 </p>
 
+
+                {/* BOTÕES */}
+
                 <div className="hero-actions">
-                    <MagicalButton>
+
+                    <MagicalButton
+                        onClick={onRegister}
+                    >
                         Criar minha conta
                     </MagicalButton>
 
-                    <MagicalButton variant="secondary"
-                         onClick={onRegister}
-                        >
+
+                    <MagicalButton
+                        variant="secondary"
+                        onClick={onRegister}
+                    >
                         Conheça o RPG
                     </MagicalButton>
+
                 </div>
 
             </motion.section>
 
 
+            {/* =====================================================
+                INDICADOR EXPLORE
+            ====================================================== */}
+
             <motion.div
                 className="scroll-indicator"
+
                 initial={{
                     opacity: 0,
                 }}
+
                 animate={{
                     opacity: 1,
                 }}
+
                 transition={{
                     delay: 3,
                 }}
             >
+
                 <span>
                     Explore
                 </span>
 
                 <ChevronDown />
+
             </motion.div>
 
 
+            {/* =====================================================
+                SISTEMA ATUAL
+            ====================================================== */}
+
             <div className="theme-indicator">
+
                 <span>
                     SISTEMA ATUAL
                 </span>
 
                 <strong>
+
                     {isDnd
                         ? "DUNGEONS & DRAGONS"
                         : "ORDEM PARANORMAL"}
+
                 </strong>
+
             </div>
 
         </main>
