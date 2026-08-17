@@ -35,7 +35,7 @@
 
 
 /* =========================================================
-   CADA MUNDO
+   MUNDOS
 ========================================================= */
 
 .world {
@@ -58,8 +58,7 @@
 
 
 /* =========================================================
-   FUNDO TEMPORÁRIO D&D
-   Depois vamos trocar pela imagem definitiva
+   FUNDO D&D
 ========================================================= */
 
 .world-dnd {
@@ -79,7 +78,7 @@
 
 
 /* =========================================================
-   FUNDO TEMPORÁRIO ORDEM PARANORMAL
+   FUNDO ORDEM PARANORMAL
 ========================================================= */
 
 .world-ordem {
@@ -99,7 +98,7 @@
 
 
 /* =========================================================
-   QUANDO TIVER AS IMAGENS
+   FUTURAS IMAGENS
 ========================================================= */
 
 /*
@@ -124,7 +123,7 @@
 
 
 /* =========================================================
-   ESCURECIMENTO DOS MUNDOS
+   OVERLAY
 ========================================================= */
 
 .world-overlay {
@@ -165,7 +164,7 @@
 
 
 /* =========================================================
-   TEXTO PEQUENO
+   LABEL
 ========================================================= */
 
 .world-label {
@@ -278,7 +277,7 @@
 
 
 /* =========================================================
-   DIVISÃO ENTRE OS DOIS MUNDOS
+   DIVISÃO ENTRE OS MUNDOS
 ========================================================= */
 
 .home-background::after {
@@ -315,6 +314,10 @@
 .hero {
     position: absolute;
 
+    /*
+       44% deixa o painel um pouco
+       acima do centro da tela.
+    */
     top: 44%;
     left: 50%;
 
@@ -407,12 +410,14 @@
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     margin: 0;
 
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size: clamp(52px, 7vw, 78px);
 
@@ -451,7 +456,7 @@
 
 
 /* =========================================================
-   FRASE PRINCIPAL
+   FRASE
 ========================================================= */
 
 .hero-tagline {
@@ -475,9 +480,9 @@
 
     gap: 12px;
 
-    margin: 0 auto 23px;
-
     width: 100%;
+
+    margin: 0 auto 23px;
 
     color: #d5a73d;
 }
@@ -509,7 +514,7 @@
 
 
 /* =========================================================
-   DESCRIÇÃO
+   DESCRIÇÃO CENTRAL
 ========================================================= */
 
 .hero-description {
@@ -535,7 +540,6 @@
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     gap: 12px;
@@ -545,7 +549,7 @@
 
 
 /* =========================================================
-   MENU / AÇÕES SUPERIORES
+   AÇÕES SUPERIORES
 ========================================================= */
 
 .top-actions {
@@ -628,7 +632,6 @@
     position: absolute;
 
     left: var(--left);
-
     bottom: -20px;
 
     width: 3px;
@@ -642,8 +645,11 @@
         0 0 8px rgba(218, 176, 75, 0.8);
 
     animation:
-        particleFloat var(--duration) linear
-        var(--delay) infinite;
+        particleFloat
+        var(--duration)
+        linear
+        var(--delay)
+        infinite;
 }
 
 
@@ -676,7 +682,7 @@
 
 
 /* =========================================================
-   INDICADOR EXPLORE
+   EXPLORE
 ========================================================= */
 
 .scroll-indicator {
@@ -714,7 +720,10 @@
     height: 17px;
 
     animation:
-        scrollArrow 1.5s ease-in-out infinite;
+        scrollArrow
+        1.5s
+        ease-in-out
+        infinite;
 }
 
 
@@ -783,18 +792,24 @@
         bottom: 8%;
     }
 
+
     .world-content h2 {
         font-size: 35px;
     }
+
 
     .world-content p {
         font-size: 12px;
     }
 
+
     .hero {
         width: min(480px, 86vw);
 
-        padding: 30px 30px 34px;
+        padding:
+            30px
+            30px
+            34px;
     }
 
 }
@@ -810,8 +825,6 @@
         min-height: 650px;
     }
 
-
-    /* Esconde o conteúdo lateral no celular */
 
     .world-content {
         display: none;
@@ -874,7 +887,7 @@
 
 
 /* =========================================================
-   TELAS MUITO PEQUENAS
+   TELAS BAIXAS
 ========================================================= */
 
 @media (max-height: 650px) {
