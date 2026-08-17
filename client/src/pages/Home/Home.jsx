@@ -139,19 +139,22 @@ export default function Home({
 
 
             <motion.section
-                className="hero"
-                initial={{
-                    opacity: 0,
-                    y: 20,
-                }}
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                }}
-                transition={{
-                    delay: 1.8,
-                    duration: 1,
-                }}
+    className="hero"
+    initial={{
+        opacity: 0,
+        x: "-50%",
+        y: 20,
+    }}
+    animate={{
+        opacity: 1,
+        x: "-50%",
+        y: 0,
+    }}
+    transition={{
+        delay: 1.8,
+        duration: 1,
+    }}
+>
             >
 
                 <div className="hero-symbol">
