@@ -1,22 +1,25 @@
 /* =========================================================
-   ORDO-RPGISTAS
+   ORDO RPGISTAS
    HOME / TELA INICIAL
-   ========================================================= */
+========================================================= */
 
 .home {
     position: relative;
     width: 100%;
     height: 100vh;
-    min-height: 650px;
+    min-height: 700px;
     overflow: hidden;
 
     background: #050505;
     color: #ffffff;
+
+    font-family: Georgia, "Times New Roman", serif;
 }
 
+
 /* =========================================================
-   FUNDO
-   ========================================================= */
+   FUNDO PRINCIPAL
+========================================================= */
 
 .home-background {
     position: absolute;
@@ -24,300 +27,290 @@
 
     display: flex;
 
-    overflow: hidden;
-
-    background: #050505;
+    width: 100%;
+    height: 100%;
 
     z-index: 0;
 }
 
-.home-background::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.30),
-            rgba(0, 0, 0, 0.05) 50%,
-            rgba(0, 0, 0, 0.40)
-        );
-
-    pointer-events: none;
-
-    z-index: 3;
-}
 
 /* =========================================================
-   LADO D&D
-   ========================================================= */
+   CADA MUNDO
+========================================================= */
 
-.background-dnd {
+.world {
     position: relative;
 
     width: 50%;
     height: 100%;
 
+    overflow: hidden;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    transition:
+        width 1.2s ease,
+        filter 1.2s ease,
+        transform 1.2s ease;
+}
+
+
+/* =========================================================
+   FUNDO TEMPORÁRIO D&D
+   Depois vamos trocar pela imagem definitiva
+========================================================= */
+
+.world-dnd {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(7, 12, 8, 0.15),
+            rgba(4, 8, 5, 0.95)
+        ),
+        radial-gradient(
+            circle at 50% 30%,
+            #405f36 0%,
+            #1d3420 35%,
+            #09100a 100%
+        );
+}
+
+
+/* =========================================================
+   FUNDO TEMPORÁRIO ORDEM PARANORMAL
+========================================================= */
+
+.world-ordem {
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(90, 30, 100, 0.45),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #050508 0%,
+            #160d1c 45%,
+            #080509 100%
+        );
+}
+
+
+/* =========================================================
+   QUANDO TIVER AS IMAGENS
+========================================================= */
+
+/*
+.world-dnd {
     background-image:
         linear-gradient(
             rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.40)
+            rgba(0, 0, 0, 0.75)
         ),
-        url("/images/dnd-home.jpg");
-
-    background-size: cover;
-    background-position: center;
-
-    transform: scale(1.02);
-
-    transition:
-        width 0.8s ease,
-        filter 0.8s ease,
-        transform 1.2s ease;
-
-    z-index: 1;
+        url("/images/dnd-background.jpg");
 }
 
-/* =========================================================
-   LADO ORDEM PARANORMAL
-   ========================================================= */
-
-.background-ordem {
-    position: relative;
-
-    width: 50%;
-    height: 100%;
-
+.world-ordem {
     background-image:
         linear-gradient(
-            rgba(0, 0, 0, 0.30),
-            rgba(0, 0, 0, 0.45)
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.75)
         ),
-        url("/images/ordem-home.jpg");
-
-    background-size: cover;
-    background-position: center;
-
-    transform: scale(1.02);
-
-    transition:
-        width 0.8s ease,
-        filter 0.8s ease,
-        transform 1.2s ease;
-
-    z-index: 1;
+        url("/images/ordem-background.jpg");
 }
+*/
+
 
 /* =========================================================
-   EFEITO DE ESCURECIMENTO
-   ========================================================= */
+   ESCURECIMENTO DOS MUNDOS
+========================================================= */
 
-.background-dnd::after,
-.background-ordem::after {
-    content: "";
-
+.world-overlay {
     position: absolute;
     inset: 0;
 
     background:
-        radial-gradient(
-            circle at center,
-            transparent 15%,
-            rgba(0, 0, 0, 0.25) 55%,
-            rgba(0, 0, 0, 0.65) 100%
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05) 0%,
+            rgba(0, 0, 0, 0.20) 40%,
+            rgba(0, 0, 0, 0.85) 100%
         );
 
     pointer-events: none;
 }
 
-/* =========================================================
-   HEADER
-   ========================================================= */
 
-.home-header {
+/* =========================================================
+   CONTEÚDO DOS MUNDOS
+========================================================= */
+
+.world-content {
     position: absolute;
 
-    top: 22px;
-    left: 22px;
-    right: 22px;
+    left: 50%;
+    bottom: 12%;
 
-    display: flex;
+    width: 80%;
+    max-width: 500px;
 
-    align-items: center;
-    justify-content: space-between;
+    transform: translateX(-50%);
 
-    z-index: 100;
+    text-align: center;
+
+    z-index: 2;
 }
 
+
 /* =========================================================
-   MENU
-   ========================================================= */
+   TEXTO PEQUENO
+========================================================= */
 
-.menu-button {
-    width: 48px;
-    height: 48px;
+.world-label {
+    display: block;
 
-    display: flex;
+    margin-bottom: 14px;
 
-    align-items: center;
-    justify-content: center;
+    font-family: Arial, sans-serif;
 
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    font-size: 12px;
+    font-weight: 600;
 
-    border-radius: 50%;
+    letter-spacing: 4px;
 
-    background:
-        rgba(8, 8, 8, 0.78);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* =========================================================
+   TÍTULO DOS MUNDOS
+========================================================= */
+
+.world-content h2 {
+    margin: 0 0 18px;
+
+    font-size: clamp(32px, 4vw, 58px);
+
+    line-height: 0.95;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.9);
+}
+
+
+/* D&D */
+
+.world-dnd .world-content h2 {
+    color: #f1d38a;
+}
+
+
+/* ORDEM */
+
+.world-ordem .world-content h2 {
+    color: #d7d7d7;
+}
+
+
+/* =========================================================
+   DESCRIÇÃO DOS MUNDOS
+========================================================= */
+
+.world-content p {
+    margin: 0 auto 22px;
+
+    max-width: 420px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.82);
+}
+
+
+/* =========================================================
+   BOTÃO DOS MUNDOS
+========================================================= */
+
+.world-enter {
+    padding: 12px 28px;
+
+    border: 1px solid rgba(212, 167, 72, 0.7);
+
+    border-radius: 3px;
+
+    background: rgba(10, 10, 10, 0.65);
 
     color: #ffffff;
 
-    cursor: pointer;
-
-    backdrop-filter: blur(12px);
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.menu-button:hover {
-    transform: scale(1.08);
-
-    background:
-        rgba(25, 25, 25, 0.90);
-
-    border-color:
-        rgba(215, 174, 87, 0.65);
-
-    box-shadow:
-        0 0 25px rgba(215, 174, 87, 0.15);
-}
-
-/* =========================================================
-   CONTROLES SUPERIORES
-   ========================================================= */
-
-.home-controls {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-}
-
-/* =========================================================
-   BOTÃO DE TEMA
-   ========================================================= */
-
-.theme-switcher {
-    display: flex;
-
-    align-items: center;
-
-    padding: 5px;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.18);
-
-    border-radius: 30px;
-
-    background:
-        rgba(5, 5, 5, 0.78);
-
-    backdrop-filter: blur(12px);
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.theme-option {
-    padding: 9px 15px;
-
-    border: none;
-
-    border-radius: 22px;
-
-    background: transparent;
-
-    color: rgba(255, 255, 255, 0.65);
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease;
-}
-
-.theme-option:hover {
-    color: #ffffff;
-}
-
-.theme-option.active {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(215, 174, 87, 0.20),
-            rgba(215, 174, 87, 0.08)
-        );
-
-    color: #e3c56f;
-
-    box-shadow:
-        inset 0 0 0 1px
-        rgba(215, 174, 87, 0.25);
-}
-
-/* =========================================================
-   BOTÃO ENTRAR
-   ========================================================= */
-
-.login-button {
-    min-width: 100px;
-
-    padding: 12px 20px;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.22);
-
-    border-radius: 4px;
-
-    background:
-        rgba(8, 8, 8, 0.82);
-
-    color: #ffffff;
+    font-family: Georgia, serif;
 
     font-size: 14px;
 
     cursor: pointer;
 
-    backdrop-filter: blur(10px);
-
     transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
-.login-button:hover {
-    transform: translateY(-2px);
 
-    border-color:
-        rgba(215, 174, 87, 0.65);
+.world-enter:hover {
+    background: rgba(180, 130, 40, 0.2);
+
+    color: #f2cc72;
+
+    box-shadow:
+        0 0 25px rgba(212, 167, 72, 0.25);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   DIVISÃO ENTRE OS DOIS MUNDOS
+========================================================= */
+
+.home-background::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 2px;
+
+    transform: translateX(-50%);
 
     background:
-        rgba(25, 25, 25, 0.95);
+        linear-gradient(
+            transparent,
+            rgba(212, 167, 72, 0.55),
+            transparent
+        );
+
+    box-shadow:
+        0 0 20px rgba(212, 167, 72, 0.25);
+
+    z-index: 4;
 }
+
 
 /* =========================================================
    PAINEL CENTRAL
-   ========================================================= */
+========================================================= */
 
 .hero {
     position: absolute;
@@ -325,270 +318,374 @@
     top: 50%;
     left: 50%;
 
-    width: min(500px, 82vw);
+    transform: translate(-50%, -50%);
 
-    max-height: calc(100vh - 120px);
+    width: min(520px, 90vw);
 
-    padding: 32px 36px;
+    padding: 38px 45px 42px;
+
+    box-sizing: border-box;
 
     text-align: center;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(15, 12, 12, 0.90),
-            rgba(5, 5, 5, 0.76)
-        );
-
-    border:
-        1px solid rgba(255, 255, 255, 0.14);
-
-    border-radius: 4px;
-
-    backdrop-filter: blur(18px);
-
-    box-shadow:
-        0 30px 100px rgba(0, 0, 0, 0.65),
-        0 0 60px rgba(215, 174, 87, 0.06);
-
     z-index: 20;
 
-    overflow: hidden;
-}
+    border: 1px solid rgba(212, 167, 72, 0.35);
 
-/* brilho interno */
-
-.hero::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
+    border-radius: 3px;
 
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(215, 174, 87, 0.10),
-            transparent 50%
-        );
+            rgba(212, 167, 72, 0.08),
+            transparent 55%
+        ),
+        rgba(8, 7, 7, 0.91);
 
-    pointer-events: none;
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.75),
+        0 0 40px rgba(0, 0, 0, 0.5);
 }
 
+
 /* =========================================================
-   ÍCONE / ESTRELA
-   ========================================================= */
+   SÍMBOLO
+========================================================= */
 
 .hero-symbol {
-    position: relative;
+    display: flex;
 
-    margin-bottom: 15px;
+    align-items: center;
+    justify-content: center;
 
-    color: #d7ae57;
+    margin-bottom: 18px;
 
-    font-size: 28px;
+    color: #d9a93f;
 
-    text-shadow:
-        0 0 20px rgba(215, 174, 87, 0.45);
+    filter:
+        drop-shadow(
+            0 0 8px rgba(217, 169, 63, 0.45)
+        );
 }
 
+
+.hero-symbol svg {
+    width: 27px;
+    height: 27px;
+}
+
+
 /* =========================================================
-   TEXTO "BEM-VINDO"
-   ========================================================= */
+   BEM-VINDO
+========================================================= */
 
 .hero-welcome {
-    position: relative;
+    display: block;
 
     margin-bottom: 7px;
 
-    color:
-        rgba(255, 255, 255, 0.62);
+    font-family: Arial, sans-serif;
 
     font-size: 11px;
+    font-weight: 700;
 
-    font-weight: 600;
+    letter-spacing: 5px;
 
-    letter-spacing: 0.38em;
-
-    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
 }
+
 
 /* =========================================================
    TÍTULO ORDO
-   ========================================================= */
+========================================================= */
 
 .hero-title {
-    position: relative;
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
 
     margin: 0;
 
-    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    font-size: clamp(52px, 7vw, 78px);
 
-    font-size: clamp(48px, 7vw, 70px);
-
-    font-weight: 600;
+    font-weight: 400;
 
     line-height: 0.9;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 6px;
+
+    color: #ffffff;
 
     text-shadow:
-        0 5px 25px rgba(0, 0, 0, 0.45);
+        0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
+
 /* =========================================================
-   SUBTÍTULO RPGISTAS
-   ========================================================= */
+   RPGISTAS
+========================================================= */
 
 .hero-subtitle {
-    position: relative;
+    display: block;
 
-    margin-top: 14px;
+    margin-top: 12px;
 
-    color: #d7ae57;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: clamp(19px, 3vw, 27px);
+    font-size: clamp(19px, 3vw, 28px);
 
     font-weight: 600;
 
-    letter-spacing: 0.42em;
+    letter-spacing: 11px;
 
-    text-transform: uppercase;
+    color: #d8aa42;
 
-    text-shadow:
-        0 0 20px rgba(215, 174, 87, 0.20);
+    text-indent: 11px;
 }
+
 
 /* =========================================================
-   FRASE
-   ========================================================= */
+   FRASE PRINCIPAL
+========================================================= */
 
 .hero-tagline {
-    position: relative;
+    margin: 18px 0 22px;
 
-    margin-top: 17px;
+    font-size: 17px;
 
-    color:
-        rgba(255, 255, 255, 0.75);
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 16px;
-
-    font-style: normal;
+    color: rgba(255, 255, 255, 0.82);
 }
+
 
 /* =========================================================
    DIVISOR
-   ========================================================= */
+========================================================= */
 
 .hero-divider {
-    position: relative;
+    display: flex;
 
-    width: 150px;
+    align-items: center;
+    justify-content: center;
 
+    gap: 12px;
+
+    margin: 0 auto 23px;
+
+    width: 100%;
+
+    color: #d5a73d;
+}
+
+
+.hero-divider span {
+    display: block;
+
+    width: 70px;
     height: 1px;
-
-    margin: 22px auto;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(215, 174, 87, 0.85),
+            rgba(213, 167, 61, 0.7)
+        );
+}
+
+
+.hero-divider span:last-child {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(213, 167, 61, 0.7),
             transparent
         );
 }
 
-.hero-divider::after {
-    content: "✦";
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    padding: 0 8px;
-
-    background: #090808;
-
-    color: #d7ae57;
-
-    font-size: 11px;
-}
 
 /* =========================================================
    DESCRIÇÃO
-   ========================================================= */
+========================================================= */
 
 .hero-description {
-    position: relative;
+    margin: 0 auto 28px;
 
     max-width: 430px;
 
-    margin: 0 auto;
+    font-family: Arial, sans-serif;
 
-    color:
-        rgba(255, 255, 255, 0.70);
-
-    font-size: 14px;
+    font-size: 13px;
 
     line-height: 1.8;
+
+    color: rgba(255, 255, 255, 0.70);
 }
 
+
 /* =========================================================
-   BOTÕES
-   ========================================================= */
+   BOTÕES CENTRAIS
+========================================================= */
 
 .hero-actions {
-    position: relative;
-
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     gap: 12px;
 
-    margin-top: 25px;
-
     flex-wrap: wrap;
 }
 
-.hero-actions > button {
-    min-width: 180px;
-}
 
 /* =========================================================
-   ÁREA INFERIOR
-   ========================================================= */
+   MENU / AÇÕES SUPERIORES
+========================================================= */
 
-.home-bottom {
+.top-actions {
     position: absolute;
 
-    bottom: 22px;
+    top: 25px;
+    right: 28px;
 
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    z-index: 100;
+}
+
+
+/* =========================================================
+   BOTÃO LOGIN
+========================================================= */
+
+.login-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 4px;
+
+    background: rgba(5, 5, 5, 0.75);
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background 0.3s ease,
+        border 0.3s ease;
+}
+
+
+.login-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    border-color: rgba(212, 167, 72, 0.6);
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+.particles {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+
+.particle {
+    position: absolute;
+
+    left: var(--left);
+
+    bottom: -20px;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: rgba(218, 176, 75, 0.8);
+
+    box-shadow:
+        0 0 8px rgba(218, 176, 75, 0.8);
+
+    animation:
+        particleFloat var(--duration) linear
+        var(--delay) infinite;
+}
+
+
+@keyframes particleFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(40px);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   INDICADOR EXPLORE
+========================================================= */
+
+.scroll-indicator {
+    position: absolute;
+
+    bottom: 24px;
     left: 50%;
 
     transform: translateX(-50%);
-
-    z-index: 30;
 
     display: flex;
 
@@ -596,316 +693,196 @@
 
     align-items: center;
 
-    gap: 7px;
+    gap: 3px;
 
-    color:
-        rgba(255, 255, 255, 0.55);
+    z-index: 30;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-family: Arial, sans-serif;
 
     font-size: 10px;
 
-    letter-spacing: 0.35em;
+    letter-spacing: 4px;
 
     text-transform: uppercase;
-
-    pointer-events: none;
 }
 
-.home-bottom-arrow {
-    font-size: 22px;
 
-    color:
-        rgba(255, 255, 255, 0.70);
+.scroll-indicator svg {
+    width: 17px;
+    height: 17px;
 
     animation:
-        exploreArrow 1.8s ease-in-out infinite;
+        scrollArrow 1.5s ease-in-out infinite;
 }
 
-@keyframes exploreArrow {
+
+@keyframes scrollArrow {
 
     0%,
     100% {
         transform: translateY(0);
-        opacity: 0.55;
     }
 
     50% {
-        transform: translateY(7px);
-        opacity: 1;
+        transform: translateY(5px);
     }
 }
+
 
 /* =========================================================
-   PARTÍCULAS
-   ========================================================= */
+   SISTEMA ATUAL
+========================================================= */
 
-.magic-particles {
+.theme-indicator {
     position: absolute;
 
-    inset: 0;
+    right: 25px;
+    bottom: 23px;
 
-    pointer-events: none;
+    display: flex;
 
-    z-index: 5;
+    flex-direction: column;
 
-    overflow: hidden;
+    align-items: flex-end;
+
+    z-index: 30;
+
+    font-family: Arial, sans-serif;
 }
 
-.magic-particle {
-    position: absolute;
 
-    width: 3px;
-    height: 3px;
+.theme-indicator span {
+    font-size: 9px;
 
-    border-radius: 50%;
+    letter-spacing: 3px;
 
-    background: #d7ae57;
-
-    box-shadow:
-        0 0 8px #d7ae57,
-        0 0 18px rgba(215, 174, 87, 0.5);
-
-    opacity: 0.65;
-
-    animation:
-        magicFloat 5s ease-in-out infinite;
+    color: rgba(255, 255, 255, 0.45);
 }
 
-@keyframes magicFloat {
 
-    0% {
-        transform:
-            translateY(30px)
-            scale(0.7);
+.theme-indicator strong {
+    margin-top: 4px;
 
-        opacity: 0;
-    }
+    font-size: 10px;
 
-    20% {
-        opacity: 0.8;
-    }
+    letter-spacing: 2px;
 
-    50% {
-        transform:
-            translateY(-20px)
-            scale(1);
-    }
-
-    80% {
-        opacity: 0.5;
-    }
-
-    100% {
-        transform:
-            translateY(-80px)
-            scale(0.5);
-
-        opacity: 0;
-    }
+    color: #d5a73d;
 }
 
-/* =========================================================
-   MENU LATERAL
-   ========================================================= */
-
-.side-menu {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 320px;
-    height: 100vh;
-
-    padding: 90px 25px 30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(12, 10, 10, 0.98),
-            rgba(5, 5, 5, 0.96)
-        );
-
-    border-right:
-        1px solid rgba(215, 174, 87, 0.18);
-
-    backdrop-filter: blur(20px);
-
-    box-shadow:
-        20px 0 80px rgba(0, 0, 0, 0.55);
-
-    z-index: 500;
-}
 
 /* =========================================================
    RESPONSIVIDADE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 900px) {
 
-    .hero {
-        width: min(470px, 80vw);
-
-        padding: 28px;
+    .world-content {
+        bottom: 8%;
     }
 
-    .hero-title {
-        font-size: 52px;
+    .world-content h2 {
+        font-size: 35px;
     }
 
-    .hero-subtitle {
-        font-size: 20px;
-
-        letter-spacing: 0.30em;
-    }
-}
-
-@media (max-width: 700px) {
-
-    .home {
-        min-height: 700px;
-    }
-
-    .background-dnd,
-    .background-ordem {
-        width: 50%;
-    }
-
-    .home-header {
-        top: 15px;
-        left: 15px;
-        right: 15px;
-    }
-
-    .menu-button {
-        width: 44px;
-        height: 44px;
-    }
-
-    .theme-option {
-        padding: 8px 10px;
-
-        font-size: 11px;
-    }
-
-    .login-button {
-        min-width: 80px;
-
-        padding: 10px 14px;
-
+    .world-content p {
         font-size: 12px;
     }
 
     .hero {
-        width: min(430px, 88vw);
+        width: min(480px, 86vw);
 
-        padding: 26px 22px;
+        padding: 30px 30px 34px;
     }
 
-    .hero-title {
-        font-size: 45px;
-    }
-
-    .hero-subtitle {
-        font-size: 17px;
-
-        letter-spacing: 0.25em;
-    }
-
-    .hero-description {
-        font-size: 13px;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-
-        width: 100%;
-    }
-
-    .hero-actions > button {
-        width: 100%;
-
-        min-width: 0;
-    }
-
-    .home-bottom {
-        bottom: 12px;
-
-        font-size: 8px;
-    }
 }
 
-@media (max-width: 480px) {
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 650px) {
 
     .home {
-        min-height: 720px;
+        min-height: 650px;
     }
 
-    .home-controls {
-        gap: 5px;
-    }
 
-    .theme-switcher {
+    /* Esconde o conteúdo lateral no celular */
+
+    .world-content {
         display: none;
     }
+
+
+    .world {
+        width: 50%;
+    }
+
 
     .hero {
         width: 90vw;
 
-        padding: 23px 18px;
+        padding:
+            28px
+            20px
+            30px;
     }
 
-    .hero-symbol {
-        font-size: 22px;
-    }
-
-    .hero-welcome {
-        font-size: 9px;
-
-        letter-spacing: 0.28em;
-    }
 
     .hero-title {
-        font-size: 39px;
+        font-size: 55px;
     }
+
 
     .hero-subtitle {
-        margin-top: 10px;
+        font-size: 18px;
 
-        font-size: 15px;
+        letter-spacing: 7px;
     }
 
-    .hero-tagline {
-        font-size: 14px;
-    }
-
-    .hero-divider {
-        margin: 17px auto;
-    }
 
     .hero-description {
         font-size: 12px;
-
-        line-height: 1.65;
     }
 
-    .hero-actions {
-        margin-top: 20px;
+
+    .top-actions {
+        top: 15px;
+        right: 15px;
     }
+
+
+    .login-button {
+        padding: 10px 13px;
+    }
+
+
+    .theme-indicator {
+        display: none;
+    }
+
+
+    .scroll-indicator {
+        display: none;
+    }
+
 }
 
+
 /* =========================================================
-   REDUÇÃO DE MOVIMENTO
-   ========================================================= */
+   TELAS MUITO PEQUENAS
+========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-height: 650px) {
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        transition-duration: 0.01ms !important;
+    .hero {
+        transform:
+            translate(-50%, -50%)
+            scale(0.85);
     }
+
 }
