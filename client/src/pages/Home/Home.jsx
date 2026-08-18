@@ -11,6 +11,9 @@ import MagicalButton from "../../components/Buttons/MagicalButton";
 
 import { useTheme } from "../../context/ThemeContext";
 
+import dndBackground from "../../assets/themes/dnd-background.jpg";
+import ordemBackground from "../../assets/themes/ordem-background.jpg";
+
 import "./Home.css";
 
 export default function Home({
@@ -32,7 +35,12 @@ export default function Home({
 
                 {/* ================= D&D ================= */}
 
-                <div className="world world-dnd">
+                <div
+    className="world world-dnd"
+    style={{
+        backgroundImage: `url(${dndBackground})`,
+    }}
+>
 
                     <div className="world-overlay" />
 
@@ -68,7 +76,12 @@ export default function Home({
 
                 {/* ================= ORDEM ================= */}
 
-                <div className="world world-ordem">
+               <div
+    className="world world-ordem"
+    style={{
+        backgroundImage: `url(${ordemBackground})`,
+    }}
+>
 
                     <div className="world-overlay" />
 
