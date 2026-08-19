@@ -1,17 +1,25 @@
-import { createContext, useContext, useState } from "react";
+import {
+    createContext,
+    useContext,
+    useState,
+} from "react";
 
-const ThemeContext = createContext();
+const ThemeContext =
+    createContext();
 
-export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState("dnd");
+export function ThemeProvider({
+    children,
+}) {
+    const [theme, setTheme] =
+        useState("dnd");
 
-    const toggleTheme = () => {
+    function toggleTheme() {
         setTheme((currentTheme) =>
             currentTheme === "dnd"
                 ? "ordem"
                 : "dnd"
         );
-    };
+    }
 
     return (
         <ThemeContext.Provider
@@ -27,11 +35,12 @@ export function ThemeProvider({ children }) {
 }
 
 export function useTheme() {
-    const context = useContext(ThemeContext);
+    const context =
+        useContext(ThemeContext);
 
     if (!context) {
         throw new Error(
-            "useTheme deve ser usado dentro de ThemeProvider"
+            "useTheme deve estar dentro de ThemeProvider."
         );
     }
 
