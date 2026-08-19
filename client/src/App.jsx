@@ -11,6 +11,7 @@ import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Login/Login";
 import Cadastro from "./pages/Cadastro/Cadastro";
 
+
 function AppContent() {
     const [page, setPage] = useState("landing");
 
@@ -20,13 +21,26 @@ function AppContent() {
 
             <AnimatePresence mode="wait">
 
-                {/* LANDING PAGE - PRIMEIRA TELA */}
+                {/* =========================================
+                    LANDING PAGE
+                    Primeira tela antes do login
+                ========================================= */}
+
                 {page === "landing" && (
                     <motion.div
                         key="landing"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{
+                            opacity: 0,
+                        }}
+                        animate={{
+                            opacity: 1,
+                        }}
+                        exit={{
+                            opacity: 0,
+                        }}
+                        transition={{
+                            duration: 0.5,
+                        }}
                     >
                         <Landing
                             onLogin={() =>
@@ -42,30 +56,63 @@ function AppContent() {
                 )}
 
 
-                {/* LOGIN */}
+                {/* =========================================
+                    LOGIN
+                ========================================= */}
+
                 {page === "login" && (
                     <motion.div
                         key="login"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{
+                            opacity: 0,
+                            y: 20,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                        }}
+                        exit={{
+                            opacity: 0,
+                            y: -20,
+                        }}
+                        transition={{
+                            duration: 0.4,
+                        }}
                     >
                         <Login
                             onBack={() =>
                                 setPage("landing")
+                            }
+                            onLoginSuccess={() =>
+                                setPage("dashboard")
                             }
                         />
                     </motion.div>
                 )}
 
 
-                {/* CADASTRO */}
+                {/* =========================================
+                    CADASTRO
+                ========================================= */}
+
                 {page === "cadastro" && (
                     <motion.div
                         key="cadastro"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{
+                            opacity: 0,
+                            y: 20,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                        }}
+                        exit={{
+                            opacity: 0,
+                            y: -20,
+                        }}
+                        transition={{
+                            duration: 0.4,
+                        }}
                     >
                         <Cadastro
                             onBack={() =>
@@ -79,7 +126,11 @@ function AppContent() {
                 )}
 
 
-                {/* HOME REAL DO USUÁRIO */}
+                {/* =========================================
+                    DASHBOARD
+                    Por enquanto é apenas temporário
+                ========================================= */}
+
                 {page === "dashboard" && (
                     <DashboardPlaceholder />
                 )}
@@ -90,69 +141,125 @@ function AppContent() {
 }
 
 
+/* =========================================
+    DASHBOARD TEMPORÁRIO
+
+    Depois vamos substituir isso pela
+    verdadeira Home do usuário.
+========================================= */
+
 function DashboardPlaceholder() {
     return (
-        <motion.div
+        <motion.main
             style={{
                 minHeight: "100vh",
                 display: "grid",
                 placeItems: "center",
-                background: "#050505",
+                background:
+                    "radial-gradient(circle at top, #1a140d 0%, #080808 55%, #030303 100%)",
                 color: "white",
                 fontFamily: "Cinzel, serif",
                 textAlign: "center",
+                padding: "30px",
             }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{
+                opacity: 0,
+            }}
+            animate={{
+                opacity: 1,
+            }}
+            transition={{
+                duration: 0.7,
+            }}
         >
             <div>
 
                 <div
                     style={{
                         color: "#d7ae57",
-                        fontSize: 12,
+                        fontSize: "12px",
                         letterSpacing: "0.4em",
+                        marginBottom: "20px",
                     }}
                 >
                     ORDO RPGISTAS
                 </div>
 
+
                 <h1
                     style={{
-                        marginTop: 15,
-                        fontSize: 35,
+                        fontSize: "clamp(32px, 5vw, 60px)",
                         fontWeight: 400,
+                        margin: 0,
                     }}
                 >
                     Sua aventura começa agora.
                 </h1>
 
+
                 <p
                     style={{
-                        marginTop: 12,
-                        opacity: 0.5,
+                        marginTop: "20px",
+                        opacity: 0.65,
                         fontFamily: "Inter, sans-serif",
-                        fontSize: 12,
+                        fontSize: "14px",
+                        lineHeight: 1.7,
                     }}
                 >
-                    A verdadeira Home do Ordo RPGistas
-                    será construída no próximo módulo.
+                    Em breve você poderá criar campanhas,
+                    <br />
+                    montar personagens e explorar mundos.
                 </p>
 
+
+                <motion.button
+                    onClick={() =>
+                        setPage?.("landing")
+                    }
+                    style={{
+                        marginTop: "30px",
+                        padding: "14px 28px",
+                        background: "transparent",
+                        border:
+                            "1px solid rgba(215, 174, 87, 0.6)",
+                        color: "#d7ae57",
+                        cursor: "pointer",
+                        fontFamily: "Cinzel, serif",
+                        letterSpacing: "0.08em",
+                    }}
+                    whileHover={{
+                        scale: 1.05,
+                    }}
+                    whileTap={{
+                        scale: 0.97,
+                    }}
+                >
+                    ORDO RPGISTAS
+                </motion.button>
+
             </div>
-        </motion.div>
+        </motion.main>
     );
 }
 
+
+/* =========================================
+    APP PRINCIPAL
+========================================= */
 
 function App() {
     return (
         <ThemeProvider>
+
             <UserProvider>
+
                 <AppContent />
+
             </UserProvider>
+
         </ThemeProvider>
     );
 }
+
 
 export default App;
