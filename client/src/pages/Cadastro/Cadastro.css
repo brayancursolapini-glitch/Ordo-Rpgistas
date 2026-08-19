@@ -1,0 +1,558 @@
+/* =========================================================
+   CADASTRO PAGE
+========================================================= */
+
+.cadastro-page {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        40px
+        20px;
+
+    overflow-x: hidden;
+
+    background: #050505;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   FUNDO
+========================================================= */
+
+.cadastro-background {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(215, 174, 87, 0.11),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(80, 40, 15, 0.10),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #060504,
+            #0c0a07 50%,
+            #030303
+        );
+
+    z-index: 0;
+}
+
+
+.cadastro-background::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            rgba(215, 174, 87, 0.4) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        80px
+        80px;
+
+    opacity: 0.07;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.cadastro-container {
+    position: relative;
+
+    z-index: 1;
+
+    width:
+        min(
+            520px,
+            100%
+        );
+
+    padding:
+        52px
+        48px
+        40px;
+
+    border:
+        1px solid
+        rgba(215, 174, 87, 0.28);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 18, 16, 0.97),
+            rgba(8, 8, 8, 0.99)
+        );
+
+    box-shadow:
+        0 25px 90px
+        rgba(0, 0, 0, 0.7),
+        inset 0 0 60px
+        rgba(215, 174, 87, 0.02);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+
+/* =========================================================
+   BOTÃO VOLTAR
+========================================================= */
+
+.cadastro-back-button {
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.cadastro-back-button:hover {
+    color: #d7ae57;
+
+    transform:
+        translateX(-3px);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.cadastro-header {
+    text-align: center;
+
+    margin-bottom: 32px;
+
+    padding-top: 10px;
+}
+
+
+.cadastro-small-title {
+    display: block;
+
+    color: #d7ae57;
+
+    font-size: 10px;
+
+    letter-spacing: 0.32em;
+
+    margin-bottom: 14px;
+}
+
+
+.cadastro-header h1 {
+    margin: 0;
+
+    color: #f2f2f2;
+
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            48px
+        );
+
+    font-weight: 500;
+
+    letter-spacing: 0.06em;
+}
+
+
+.cadastro-header p {
+    margin:
+        14px
+        auto
+        0;
+
+    max-width: 330px;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.cadastro-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   INPUT GROUP
+========================================================= */
+
+.cadastro-input-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.cadastro-input-group label {
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+}
+
+
+.cadastro-input-wrapper {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    height: 52px;
+
+    padding:
+        0
+        15px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    transition:
+        border 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.cadastro-input-wrapper:focus-within {
+    border-color:
+        rgba(215, 174, 87, 0.7);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(215, 174, 87, 0.06);
+}
+
+
+.cadastro-input-wrapper svg {
+    color:
+        rgba(215, 174, 87, 0.75);
+
+    flex-shrink: 0;
+}
+
+
+.cadastro-input-wrapper input {
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    padding:
+        0
+        12px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.cadastro-input-wrapper input::placeholder {
+    color:
+        rgba(255, 255, 255, 0.28);
+}
+
+
+/* =========================================================
+   MOSTRAR SENHA
+========================================================= */
+
+.cadastro-password-toggle {
+    display: grid;
+
+    place-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(255, 255, 255, 0.45);
+
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.cadastro-password-toggle:hover {
+    color: #d7ae57;
+}
+
+
+/* =========================================================
+   AVISO SOBRE NOME
+========================================================= */
+
+.username-warning {
+    color:
+        rgba(255, 255, 255, 0.35);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SEGURANÇA
+========================================================= */
+
+.security-info {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding:
+        14px
+        15px;
+
+    border:
+        1px solid
+        rgba(215, 174, 87, 0.12);
+
+    background:
+        rgba(215, 174, 87, 0.025);
+}
+
+
+.security-info svg {
+    flex-shrink: 0;
+
+    color:
+        rgba(215, 174, 87, 0.8);
+}
+
+
+.security-info p {
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOTÃO CADASTRO
+========================================================= */
+
+.cadastro-submit {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    min-height: 54px;
+
+    margin-top: 4px;
+
+    border:
+        1px solid
+        rgba(215, 174, 87, 0.7);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215, 174, 87, 0.16),
+            rgba(215, 174, 87, 0.04)
+        );
+
+    color: #e7c46f;
+
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
+
+    font-size: 13px;
+
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.cadastro-submit:hover {
+    background:
+        rgba(215, 174, 87, 0.16);
+
+    box-shadow:
+        0 8px 35px
+        rgba(215, 174, 87, 0.12);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.cadastro-footer {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 28px;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+.cadastro-footer button {
+    border: none;
+
+    padding: 0;
+
+    background: transparent;
+
+    color: #d7ae57;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.cadastro-footer button:hover {
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .cadastro-page {
+        padding:
+            20px
+            15px;
+    }
+
+
+    .cadastro-container {
+        padding:
+            55px
+            25px
+            35px;
+    }
+
+
+    .cadastro-footer {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+}
