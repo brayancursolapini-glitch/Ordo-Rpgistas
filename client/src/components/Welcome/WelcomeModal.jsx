@@ -1,44 +1,36 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-    ArrowRight,
     BookOpen,
-    Dice5,
     Sparkles,
-    Users,
+    X,
 } from "lucide-react";
-
-import { useUser } from "../../context/UserContext";
 
 import "./WelcomeModal.css";
 
-export default function WelcomeModal() {
-    const {
-        firstVisit,
-        completeFirstVisit,
-    } = useUser();
-
-    if (!firstVisit) {
-        return null;
-    }
-
-    const handleContinue = () => {
-        completeFirstVisit();
-    };
-
+export default function WelcomeModal({
+    isOpen,
+    onClose,
+}) {
     return (
         <AnimatePresence>
-            {firstVisit && (
+            {isOpen && (
                 <motion.div
                     className="welcome-overlay"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    initial={{
+                        opacity: 0,
+                    }}
+                    animate={{
+                        opacity: 1,
+                    }}
+                    exit={{
+                        opacity: 0,
+                    }}
                 >
                     <motion.div
                         className="welcome-modal"
                         initial={{
                             opacity: 0,
-                            scale: 0.92,
+                            scale: 0.9,
                             y: 30,
                         }}
                         animate={{
@@ -46,104 +38,78 @@ export default function WelcomeModal() {
                             scale: 1,
                             y: 0,
                         }}
+                        exit={{
+                            opacity: 0,
+                            scale: 0.9,
+                            y: 30,
+                        }}
                         transition={{
-                            duration: 0.6,
+                            duration: 0.3,
                         }}
                     >
-                        <div className="welcome-glow" />
-
-                        <motion.div
-                            className="welcome-icon"
-                            animate={{
-                                rotate: [
-                                    0,
-                                    -8,
-                                    8,
-                                    0,
-                                ],
-                            }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                            }}
+                        <button
+                            className="welcome-close"
+                            onClick={onClose}
+                            aria-label="Fechar"
                         >
-                            <Sparkles size={34} />
-                        </motion.div>
+                            <X size={20} />
+                        </button>
 
-                        <span className="welcome-label">
-                            BEM-VINDO À ORDO RPGISTAS
-                        </span>
-
-                        <h1>
-                            E se você pudesse
-                            <br />
-                            <strong>
-                                viver outra vida?
-                            </strong>
-                        </h1>
-
-                        <p className="welcome-text">
-                            RPG é muito mais do que
-                            jogar dados.
-                        </p>
-
-                        <p className="welcome-description">
-                            É você e seus amigos
-                            entrando em um mundo
-                            completamente novo,
-                            criando personagens,
-                            tomando decisões e
-                            construindo uma história
-                            que ninguém sabe como vai
-                            terminar.
-                        </p>
-
-                        <div className="welcome-features">
-                            <div>
-                                <Dice5 />
-                                <span>
-                                    Role os dados
-                                </span>
-                            </div>
-
-                            <div>
-                                <Users />
-                                <span>
-                                    Jogue com amigos
-                                </span>
-                            </div>
-
-                            <div>
-                                <BookOpen />
-                                <span>
-                                    Crie histórias
-                                </span>
-                            </div>
+                        <div className="welcome-icon">
+                            <Sparkles size={30} />
                         </div>
 
-                        <motion.button
-                            className="welcome-button"
-                            onClick={handleContinue}
-                            whileHover={{
-                                scale: 1.03,
-                            }}
-                            whileTap={{
-                                scale: 0.97,
-                            }}
-                        >
-                            <span>
-                                Quero descobrir
-                            </span>
+                        <span className="welcome-small">
+                            BEM-VINDO AO
+                        </span>
 
-                            <ArrowRight size={18} />
-                        </motion.button>
+                        <h2>
+                            MUNDO DO RPG
+                        </h2>
+
+                        <div className="welcome-divider">
+                            <span />
+                            ✦
+                            <span />
+                        </div>
+
+                        <div className="welcome-content">
+
+                            <div className="welcome-book-icon">
+                                <BookOpen size={22} />
+                            </div>
+
+                            <p>
+                                O mundo do RPG é um lugar incrível
+                                onde você e seus amigos podem criar,
+                                viver e narrar suas próprias histórias.
+                            </p>
+
+                            <p>
+                                Aqui, suas ideias e sua criatividade
+                                podem decidir o rumo da aventura.
+                                Você pode ser um grande herói,
+                                um poderoso mago, um investigador
+                                paranormal ou praticamente qualquer
+                                personagem que conseguir imaginar.
+                            </p>
+
+                            <p>
+                                Cada decisão pode mudar a história.
+                                Uma escolha pode salvar um reino,
+                                descobrir um mistério ou colocar
+                                todo o grupo em perigo.
+                            </p>
+
+                        </div>
 
                         <button
-                            className="welcome-skip"
-                            onClick={handleContinue}
+                            className="welcome-start"
+                            onClick={onClose}
                         >
-                            Pular introdução
+                            Começar minha aventura
                         </button>
+
                     </motion.div>
                 </motion.div>
             )}
