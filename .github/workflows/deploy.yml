@@ -1,9 +1,11 @@
-name: Deploy Ordo RPgistas
+name: Deploy Ordo RPGistas
 
 on:
   push:
     branches:
       - main
+
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,26 +21,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Baixar código
         uses: actions/checkout@v4
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Instalar dependências
         working-directory: ./client
         run: npm install
 
-      - name: Build do projeto
+      - name: Criar build
         working-directory: ./client
         run: npm run build
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload do site
+      - name: Preparar arquivos do site
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./client/dist
@@ -56,6 +58,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Deploy para GitHub Pages
+      - name: Publicar no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
