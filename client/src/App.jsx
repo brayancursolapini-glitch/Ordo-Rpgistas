@@ -1,363 +1,212 @@
-import {
-    AnimatePresence,
-    motion,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
-import {
-    useState,
-} from "react";
+import { ThemeProvider } from "./context/ThemeContext";
+import { UserProvider } from "./context/UserContext";
 
-import {
-    ThemeProvider,
-} from "./context/ThemeContext";
+import IntroLoader from "./components/Loading/IntroLoader";
+import WelcomeModal from "./components/Welcome/WelcomeModal";
 
-import {
-    UserProvider,
-} from "./context/UserContext";
-
-import IntroLoader
-    from "./components/Loading/IntroLoader";
-
-import WelcomeModal
-    from "./components/Welcome/WelcomeModal";
-
-import Landing
-    from "./pages/Landing/Landing";
-
-import Login
-    from "./pages/Login/Login";
-
-import Cadastro
-    from "./pages/Cadastro/Cadastro";
-
+import Landing from "./pages/Landing/Landing";
+import Login from "./pages/Login/Login";
+import Cadastro from "./pages/Cadastro/Cadastro";
 
 function AppContent() {
-
-    const [page, setPage] =
-        useState("landing");
-
-    const [showWelcome, setShowWelcome] =
-        useState(false);
-
+    const [page, setPage] = useState("landing");
 
     return (
         <>
             <IntroLoader />
 
-            <AnimatePresence
-                mode="wait"
-            >
+            <AnimatePresence mode="wait">
 
-                {/* =====================================
+                {/* =========================
                     LANDING PAGE
-                    PRIMEIRA TELA DO SITE
-                ===================================== */}
+                ========================= */}
 
                 {page === "landing" && (
-
                     <motion.div
                         key="landing"
-
                         initial={{
                             opacity: 0,
                         }}
-
                         animate={{
                             opacity: 1,
                         }}
-
                         exit={{
                             opacity: 0,
                         }}
+                        transition={{
+                            duration: 0.4,
+                        }}
                     >
-
                         <Landing
-
-                            onLogin={() =>
-                                setPage("login")
-                            }
-
-                            onRegister={() =>
-                                setPage("cadastro")
-                            }
-
-                            onLearnMore={() =>
-                                setShowWelcome(true)
-                            }
-
+                            onLogin={() => {
+                                setPage("login");
+                            }}
+                            onRegister={() => {
+                                setPage("cadastro");
+                            }}
                         />
 
+                        <WelcomeModal />
                     </motion.div>
-
                 )}
 
 
-                {/* =====================================
+                {/* =========================
                     LOGIN
-                ===================================== */}
+                ========================= */}
 
                 {page === "login" && (
-
                     <motion.div
                         key="login"
-
                         initial={{
                             opacity: 0,
-                            y: 15,
+                            y: 20,
                         }}
-
                         animate={{
                             opacity: 1,
                             y: 0,
                         }}
-
                         exit={{
                             opacity: 0,
-                            y: -15,
+                            y: -20,
+                        }}
+                        transition={{
+                            duration: 0.35,
                         }}
                     >
-
                         <Login
-
-                            onBack={() =>
-                                setPage("landing")
-                            }
-
-                            onRegister={() =>
-                                setPage("cadastro")
-                            }
-
-                            onSuccess={() =>
-                                setPage("dashboard")
-                            }
-
+                            onBack={() => {
+                                setPage("landing");
+                            }}
+                            onRegister={() => {
+                                setPage("cadastro");
+                            }}
+                            onLoginSuccess={() => {
+                                setPage("dashboard");
+                            }}
                         />
-
                     </motion.div>
-
                 )}
 
 
-                {/* =====================================
+                {/* =========================
                     CADASTRO
-                ===================================== */}
+                ========================= */}
 
                 {page === "cadastro" && (
-
                     <motion.div
                         key="cadastro"
-
                         initial={{
                             opacity: 0,
-                            y: 15,
+                            x: 20,
                         }}
-
                         animate={{
                             opacity: 1,
-                            y: 0,
+                            x: 0,
                         }}
-
                         exit={{
                             opacity: 0,
-                            y: -15,
+                            x: -20,
+                        }}
+                        transition={{
+                            duration: 0.35,
                         }}
                     >
-
                         <Cadastro
-
-                            onBack={() =>
-                                setPage("landing")
-                            }
-
-                            onComplete={() =>
-                                setPage("dashboard")
-                            }
-
+                            onBack={() => {
+                                setPage("landing");
+                            }}
+                            onComplete={() => {
+                                setPage("dashboard");
+                            }}
                         />
-
                     </motion.div>
-
                 )}
 
 
-                {/* =====================================
-                    DASHBOARD
-                    HOME REAL DO USUÁRIO
-                ===================================== */}
+                {/* =========================
+                    HOME PÓS-LOGIN
+                ========================= */}
 
                 {page === "dashboard" && (
-
                     <DashboardPlaceholder />
-
                 )}
 
             </AnimatePresence>
-
-
-            <WelcomeModal
-
-                isOpen={showWelcome}
-
-                onClose={() =>
-                    setShowWelcome(false)
-                }
-
-            />
-
         </>
     );
 }
 
 
 function DashboardPlaceholder() {
-
     return (
-
-        <motion.main
-
-            className="dashboard-placeholder"
-
+        <motion.div
+            style={{
+                minHeight: "100vh",
+                display: "grid",
+                placeItems: "center",
+                background: "#050505",
+                color: "white",
+                fontFamily: "Cinzel, serif",
+                textAlign: "center",
+            }}
             initial={{
                 opacity: 0,
             }}
-
             animate={{
                 opacity: 1,
             }}
-
-            transition={{
-                duration: 0.5,
-            }}
-
-            style={{
-
-                minHeight: "100vh",
-
-                display: "grid",
-
-                placeItems: "center",
-
-                background:
-                    "radial-gradient(circle at top, #17130e, #050505 60%)",
-
-                color: "white",
-
-                fontFamily:
-                    "Cinzel, Georgia, serif",
-
-                textAlign:
-                    "center",
-
-                padding:
-                    "30px",
-
-            }}
-
         >
-
             <div>
 
-                <span
-
+                <div
                     style={{
-
-                        color:
-                            "#d7ae57",
-
-                        fontSize:
-                            "11px",
-
-                        fontWeight:
-                            700,
-
-                        letterSpacing:
-                            "0.45em",
-
+                        color: "#d7ae57",
+                        fontSize: "12px",
+                        letterSpacing: "0.4em",
                     }}
-
                 >
-
                     ORDO RPGISTAS
-
-                </span>
-
+                </div>
 
                 <h1
-
                     style={{
-
-                        margin:
-                            "20px 0 15px",
-
-                        fontSize:
-                            "clamp(30px, 5vw, 55px)",
-
-                        fontWeight:
-                            500,
-
+                        marginTop: "15px",
+                        fontSize: "35px",
+                        fontWeight: 400,
                     }}
-
                 >
-
                     Sua aventura começa agora.
-
                 </h1>
 
-
                 <p
-
                     style={{
-
-                        margin:
-                            0,
-
-                        maxWidth:
-                            "550px",
-
-                        color:
-                            "rgba(255,255,255,0.55)",
-
-                        fontFamily:
-                            "Arial, sans-serif",
-
-                        lineHeight:
-                            1.7,
-
+                        marginTop: "12px",
+                        opacity: 0.5,
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "12px",
                     }}
-
                 >
-
-                    A verdadeira Home do Ordo RPGistas será construída
-                    aqui. É nela que o jogador poderá acessar campanhas,
-                    personagens, mapas, mesas e todas as ferramentas.
-
+                    A verdadeira Home será construída agora.
                 </p>
 
             </div>
-
-        </motion.main>
-
+        </motion.div>
     );
-
 }
 
 
 function App() {
-
     return (
-
         <ThemeProvider>
-
             <UserProvider>
-
                 <AppContent />
-
             </UserProvider>
-
         </ThemeProvider>
-
     );
-
 }
 
 
