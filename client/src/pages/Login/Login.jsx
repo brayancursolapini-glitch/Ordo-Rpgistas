@@ -3,48 +3,82 @@ import {
     ArrowLeft,
     Eye,
     EyeOff,
-    Lock,
-    Mail,
     LogIn,
+    Mail,
+    Lock,
 } from "lucide-react";
 
-import { useState } from "react";
+import {
+    useState,
+} from "react";
+
+import { useUser } from "../../context/UserContext";
 
 import "./Login.css";
 
 export default function Login({
     onBack,
     onRegister,
-    onLoginSuccess,
+    onSuccess,
 }) {
-    const [showPassword, setShowPassword] =
-        useState(false);
-
     const [email, setEmail] =
         useState("");
 
     const [password, setPassword] =
         useState("");
 
+    const [showPassword, setShowPassword] =
+        useState(false);
+
+    const [error, setError] =
+        useState("");
+
+    const { login } = useUser();
+
     function handleSubmit(event) {
         event.preventDefault();
 
-        if (!email || !password) {
-            alert("Preencha todos os campos.");
+        setError("");
+
+        if (!email.trim()) {
+            setError(
+                "Digite seu e-mail ou nome de usuário."
+            );
+
+            return;
+        }
+
+        if (!password.trim()) {
+            setError(
+                "Digite sua senha."
+            );
+
             return;
         }
 
         /*
-            TEMPORÁRIO
+            POR ENQUANTO:
 
-            Depois vamos conectar isso
-            ao sistema real de usuários
-            e banco de dados.
+            Ainda não existe backend nem banco de dados.
+
+            Então estamos apenas simulando o login.
+
+            Depois vamos conectar isso ao sistema real.
         */
 
-        if (onLoginSuccess) {
-            onLoginSuccess();
-        }
+        const userData = {
+            name: email
+                .split("@")[0]
+                .replace(/[^a-zA-Z0-9]/g, ""),
+
+            email: email,
+
+            avatar: null,
+        };
+
+        login(userData);
+
+        onSuccess();
     }
 
     return (
@@ -53,24 +87,25 @@ export default function Login({
             <div className="login-background" />
 
             <motion.section
-                className="login-container"
+                className="login-card"
+
                 initial={{
                     opacity: 0,
                     y: 30,
                 }}
+
                 animate={{
                     opacity: 1,
                     y: 0,
                 }}
+
                 transition={{
-                    duration: 0.6,
+                    duration: 0.5,
                 }}
             >
 
-                {/* VOLTAR */}
-
                 <button
-                    className="login-back-button"
+                    className="login-back"
                     onClick={onBack}
                 >
                     <ArrowLeft size={18} />
@@ -79,11 +114,9 @@ export default function Login({
                 </button>
 
 
-                {/* CABEÇALHO */}
-
                 <div className="login-header">
 
-                    <span className="login-small-title">
+                    <span>
                         BEM-VINDO DE VOLTA
                     </span>
 
@@ -92,36 +125,45 @@ export default function Login({
                     </h1>
 
                     <p>
-                        Sua próxima aventura
-                        está esperando por você.
+                        Sua próxima aventura está esperando.
                     </p>
 
                 </div>
 
 
-                {/* FORMULÁRIO */}
+                <div className="login-divider">
+
+                    <span />
+
+                    ✦
+
+                    <span />
+
+                </div>
+
 
                 <form
-                    className="login-form"
                     onSubmit={handleSubmit}
+                    className="login-form"
                 >
 
-                    {/* EMAIL */}
+                    <label>
 
-                    <div className="login-input-group">
+                        E-mail ou usuário
 
-                        <label>
-                            E-mail
-                        </label>
+                        <div className="input-wrapper">
 
-                        <div className="login-input-wrapper">
-
-                            <Mail size={19} />
+                            <Mail size={18} />
 
                             <input
-                                type="email"
-                                placeholder="Digite seu e-mail"
+                                type="text"
+
+                                placeholder="
+                                Digite seu e-mail ou usuário
+                                "
+
                                 value={email}
+
                                 onChange={(event) =>
                                     setEmail(
                                         event.target.value
@@ -131,20 +173,16 @@ export default function Login({
 
                         </div>
 
-                    </div>
+                    </label>
 
 
-                    {/* SENHA */}
+                    <label>
 
-                    <div className="login-input-group">
+                        Senha
 
-                        <label>
-                            Senha
-                        </label>
+                        <div className="input-wrapper">
 
-                        <div className="login-input-wrapper">
-
-                            <Lock size={19} />
+                            <Lock size={18} />
 
                             <input
                                 type={
@@ -152,8 +190,13 @@ export default function Login({
                                         ? "text"
                                         : "password"
                                 }
-                                placeholder="Digite sua senha"
+
+                                placeholder="
+                                Digite sua senha
+                                "
+
                                 value={password}
+
                                 onChange={(event) =>
                                     setPassword(
                                         event.target.value
@@ -163,87 +206,68 @@ export default function Login({
 
                             <button
                                 type="button"
-                                className="login-password-toggle"
+
+                                className="password-toggle"
+
                                 onClick={() =>
                                     setShowPassword(
                                         !showPassword
                                     )
                                 }
                             >
+
                                 {showPassword
                                     ? (
-                                        <EyeOff size={19} />
+                                        <EyeOff
+                                            size={18}
+                                        />
                                     )
                                     : (
-                                        <Eye size={19} />
+                                        <Eye
+                                            size={18}
+                                        />
                                     )}
+
                             </button>
 
                         </div>
 
-                    </div>
+                    </label>
 
 
-                    {/* OPÇÕES */}
+                    {error && (
 
-                    <div className="login-options">
+                        <div className="login-error">
+                            {error}
+                        </div>
 
-                        <label className="login-remember-option">
-
-                            <input type="checkbox" />
-
-                            <span>
-                                Lembrar de mim
-                            </span>
-
-                        </label>
+                    )}
 
 
-                        <button
-                            type="button"
-                            className="login-forgot-password"
-                        >
-                            Esqueci minha senha
-                        </button>
-
-                    </div>
-
-
-                    {/* BOTÃO */}
-
-                    <motion.button
+                    <button
                         type="submit"
                         className="login-submit"
-                        whileHover={{
-                            scale: 1.02,
-                        }}
-                        whileTap={{
-                            scale: 0.98,
-                        }}
                     >
 
-                        <LogIn size={20} />
+                        <LogIn size={18} />
 
                         Entrar na aventura
 
-                    </motion.button>
+                    </button>
 
                 </form>
 
 
-                {/* RODAPÉ */}
-
                 <div className="login-footer">
 
-                    <span>
+                    <p>
                         Ainda não possui uma conta?
-                    </span>
+                    </p>
 
                     <button
-                        type="button"
                         onClick={onRegister}
                     >
-                        Criar uma conta
+                        Criar minha conta
                     </button>
 
                 </div>
