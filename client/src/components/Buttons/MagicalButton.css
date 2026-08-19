@@ -1,0 +1,94 @@
+.magical-button {
+    position: relative;
+
+    min-width: 180px;
+
+    padding: 14px 22px;
+
+    border-radius: 4px;
+
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        background 0.3s ease,
+        border 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.magical-button.primary {
+    border: 1px solid
+        rgba(215, 174, 87, 0.8);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215, 174, 87, 0.25),
+            rgba(120, 80, 20, 0.15)
+        );
+
+    color: #f1d37b;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.25);
+}
+
+.magical-button.primary:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215, 174, 87, 0.4),
+            rgba(120, 80, 20, 0.25)
+        );
+
+    box-shadow:
+        0 12px 35px
+        rgba(215, 174, 87, 0.2);
+}
+
+.magical-button.secondary {
+    border: 1px solid
+        rgba(255, 255, 255, 0.2);
+
+    background:
+        rgba(0, 0, 0, 0.25);
+
+    color:
+        rgba(255, 255, 255, 0.85);
+}
+
+.magical-button.secondary:hover {
+    border-color:
+        rgba(215, 174, 87, 0.6);
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    color: #f1d37b;
+}
+
+.magical-button-content {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 600px) {
+
+    .magical-button {
+        width: 100%;
+    }
+
+}
