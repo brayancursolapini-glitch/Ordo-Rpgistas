@@ -14,6 +14,7 @@ import "./Login.css";
 
 export default function Login({
     onBack,
+    onRegister,
     onLoginSuccess,
 }) {
     const [showPassword, setShowPassword] =
@@ -34,10 +35,11 @@ export default function Login({
         }
 
         /*
-            MAIS PARA FRENTE:
+            TEMPORÁRIO
 
-            Aqui vamos conectar com o sistema
-            real de login e banco de dados.
+            Depois vamos conectar isso
+            ao sistema real de usuários
+            e banco de dados.
         */
 
         if (onLoginSuccess) {
@@ -48,15 +50,7 @@ export default function Login({
     return (
         <main className="login-page">
 
-            <motion.div
-                className="login-background"
-                initial={{
-                    opacity: 0,
-                }}
-                animate={{
-                    opacity: 1,
-                }}
-            />
+            <div className="login-background" />
 
             <motion.section
                 className="login-container"
@@ -73,15 +67,19 @@ export default function Login({
                 }}
             >
 
+                {/* VOLTAR */}
+
                 <button
-                    className="back-button"
+                    className="login-back-button"
                     onClick={onBack}
                 >
-                    <ArrowLeft size={20} />
+                    <ArrowLeft size={18} />
 
                     Voltar
                 </button>
 
+
+                {/* CABEÇALHO */}
 
                 <div className="login-header">
 
@@ -101,18 +99,22 @@ export default function Login({
                 </div>
 
 
+                {/* FORMULÁRIO */}
+
                 <form
                     className="login-form"
                     onSubmit={handleSubmit}
                 >
 
-                    <div className="input-group">
+                    {/* EMAIL */}
+
+                    <div className="login-input-group">
 
                         <label>
                             E-mail
                         </label>
 
-                        <div className="input-wrapper">
+                        <div className="login-input-wrapper">
 
                             <Mail size={19} />
 
@@ -132,13 +134,15 @@ export default function Login({
                     </div>
 
 
-                    <div className="input-group">
+                    {/* SENHA */}
+
+                    <div className="login-input-group">
 
                         <label>
                             Senha
                         </label>
 
-                        <div className="input-wrapper">
+                        <div className="login-input-wrapper">
 
                             <Lock size={19} />
 
@@ -159,7 +163,7 @@ export default function Login({
 
                             <button
                                 type="button"
-                                className="password-toggle"
+                                className="login-password-toggle"
                                 onClick={() =>
                                     setShowPassword(
                                         !showPassword
@@ -168,14 +172,10 @@ export default function Login({
                             >
                                 {showPassword
                                     ? (
-                                        <EyeOff
-                                            size={19}
-                                        />
+                                        <EyeOff size={19} />
                                     )
                                     : (
-                                        <Eye
-                                            size={19}
-                                        />
+                                        <Eye size={19} />
                                     )}
                             </button>
 
@@ -184,13 +184,13 @@ export default function Login({
                     </div>
 
 
+                    {/* OPÇÕES */}
+
                     <div className="login-options">
 
-                        <label className="remember-option">
+                        <label className="login-remember-option">
 
-                            <input
-                                type="checkbox"
-                            />
+                            <input type="checkbox" />
 
                             <span>
                                 Lembrar de mim
@@ -201,13 +201,15 @@ export default function Login({
 
                         <button
                             type="button"
-                            className="forgot-password"
+                            className="login-forgot-password"
                         >
                             Esqueci minha senha
                         </button>
 
                     </div>
 
+
+                    {/* BOTÃO */}
 
                     <motion.button
                         type="submit"
@@ -229,6 +231,8 @@ export default function Login({
                 </form>
 
 
+                {/* RODAPÉ */}
+
                 <div className="login-footer">
 
                     <span>
@@ -237,7 +241,7 @@ export default function Login({
 
                     <button
                         type="button"
-                        onClick={onBack}
+                        onClick={onRegister}
                     >
                         Criar uma conta
                     </button>
