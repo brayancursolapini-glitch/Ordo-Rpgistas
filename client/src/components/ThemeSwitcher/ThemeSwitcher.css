@@ -1,0 +1,81 @@
+.theme-switcher {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 115px;
+
+    padding: 8px 12px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(12px);
+
+    transition:
+        0.3s ease;
+}
+
+.theme-switcher.dnd {
+    border: 1px solid
+        rgba(215, 174, 87, 0.4);
+
+    background:
+        rgba(30, 23, 15, 0.6);
+
+    color: #d7ae57;
+}
+
+.theme-switcher.ordem {
+    border: 1px solid
+        rgba(180, 70, 90, 0.45);
+
+    background:
+        rgba(25, 8, 15, 0.65);
+
+    color: #d77a92;
+}
+
+.theme-switcher:hover {
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.2);
+}
+
+.theme-switcher-icon {
+    display: grid;
+    place-items: center;
+}
+
+.theme-switcher-text {
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+}
+
+.theme-switcher-text span {
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+
+    opacity: 0.6;
+}
+
+.theme-switcher-text strong {
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+}
