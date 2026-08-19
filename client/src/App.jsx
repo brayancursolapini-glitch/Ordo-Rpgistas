@@ -1,15 +1,34 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import {
+    AnimatePresence,
+    motion,
+} from "framer-motion";
 
-import { ThemeProvider } from "./context/ThemeContext";
-import { UserProvider } from "./context/UserContext";
+import {
+    useState,
+} from "react";
 
-import IntroLoader from "./components/Loading/IntroLoader";
-import WelcomeModal from "./components/Welcome/WelcomeModal";
+import {
+    ThemeProvider,
+} from "./context/ThemeContext";
 
-import Landing from "./pages/Landing/Landing";
-import Login from "./pages/Login/Login";
-import Cadastro from "./pages/Cadastro/Cadastro";
+import {
+    UserProvider,
+} from "./context/UserContext";
+
+import IntroLoader
+    from "./components/Loading/IntroLoader";
+
+import WelcomeModal
+    from "./components/Welcome/WelcomeModal";
+
+import Landing
+    from "./pages/Landing/Landing";
+
+import Login
+    from "./pages/Login/Login";
+
+import Cadastro
+    from "./pages/Cadastro/Cadastro";
 
 
 function AppContent() {
@@ -17,16 +36,17 @@ function AppContent() {
     const [page, setPage] =
         useState("landing");
 
+    const [showWelcome, setShowWelcome] =
+        useState(false);
+
 
     return (
         <>
-            {/* LOADER INICIAL */}
-
             <IntroLoader />
 
-
-            <AnimatePresence mode="wait">
-
+            <AnimatePresence
+                mode="wait"
+            >
 
                 {/* =====================================
                     LANDING PAGE
@@ -49,10 +69,6 @@ function AppContent() {
                         exit={{
                             opacity: 0,
                         }}
-
-                        transition={{
-                            duration: 0.5,
-                        }}
                     >
 
                         <Landing
@@ -65,10 +81,11 @@ function AppContent() {
                                 setPage("cadastro")
                             }
 
+                            onLearnMore={() =>
+                                setShowWelcome(true)
+                            }
+
                         />
-
-
-                        <WelcomeModal />
 
                     </motion.div>
 
@@ -86,7 +103,7 @@ function AppContent() {
 
                         initial={{
                             opacity: 0,
-                            y: 20,
+                            y: 15,
                         }}
 
                         animate={{
@@ -96,11 +113,7 @@ function AppContent() {
 
                         exit={{
                             opacity: 0,
-                            y: -20,
-                        }}
-
-                        transition={{
-                            duration: 0.4,
+                            y: -15,
                         }}
                     >
 
@@ -114,7 +127,7 @@ function AppContent() {
                                 setPage("cadastro")
                             }
 
-                            onLoginSuccess={() =>
+                            onSuccess={() =>
                                 setPage("dashboard")
                             }
 
@@ -136,7 +149,7 @@ function AppContent() {
 
                         initial={{
                             opacity: 0,
-                            y: 20,
+                            y: 15,
                         }}
 
                         animate={{
@@ -146,11 +159,7 @@ function AppContent() {
 
                         exit={{
                             opacity: 0,
-                            y: -20,
-                        }}
-
-                        transition={{
-                            duration: 0.4,
+                            y: -15,
                         }}
                     >
 
@@ -158,10 +167,6 @@ function AppContent() {
 
                             onBack={() =>
                                 setPage("landing")
-                            }
-
-                            onLogin={() =>
-                                setPage("login")
                             }
 
                             onComplete={() =>
@@ -176,10 +181,8 @@ function AppContent() {
 
 
                 {/* =====================================
-                    DASHBOARD TEMPORÁRIO
-
-                    Depois será substituído pela
-                    verdadeira Home do usuário.
+                    DASHBOARD
+                    HOME REAL DO USUÁRIO
                 ===================================== */}
 
                 {page === "dashboard" && (
@@ -189,14 +192,22 @@ function AppContent() {
                 )}
 
             </AnimatePresence>
+
+
+            <WelcomeModal
+
+                isOpen={showWelcome}
+
+                onClose={() =>
+                    setShowWelcome(false)
+                }
+
+            />
+
         </>
     );
 }
 
-
-/* =========================================
-   DASHBOARD TEMPORÁRIO
-========================================= */
 
 function DashboardPlaceholder() {
 
@@ -205,26 +216,6 @@ function DashboardPlaceholder() {
         <motion.main
 
             className="dashboard-placeholder"
-
-            style={{
-                minHeight: "100vh",
-
-                display: "grid",
-
-                placeItems: "center",
-
-                background:
-                    "radial-gradient(circle at top, #1a140d 0%, #080808 55%, #030303 100%)",
-
-                color: "white",
-
-                fontFamily:
-                    "Cinzel, Georgia, serif",
-
-                textAlign: "center",
-
-                padding: "30px",
-            }}
 
             initial={{
                 opacity: 0,
@@ -235,38 +226,77 @@ function DashboardPlaceholder() {
             }}
 
             transition={{
-                duration: 0.7,
+                duration: 0.5,
             }}
+
+            style={{
+
+                minHeight: "100vh",
+
+                display: "grid",
+
+                placeItems: "center",
+
+                background:
+                    "radial-gradient(circle at top, #17130e, #050505 60%)",
+
+                color: "white",
+
+                fontFamily:
+                    "Cinzel, Georgia, serif",
+
+                textAlign:
+                    "center",
+
+                padding:
+                    "30px",
+
+            }}
+
         >
 
             <div>
 
-                <div
+                <span
+
                     style={{
-                        color: "#d7ae57",
 
-                        fontSize: "12px",
+                        color:
+                            "#d7ae57",
 
-                        letterSpacing: "0.4em",
+                        fontSize:
+                            "11px",
 
-                        marginBottom: "20px",
+                        fontWeight:
+                            700,
+
+                        letterSpacing:
+                            "0.45em",
+
                     }}
+
                 >
 
                     ORDO RPGISTAS
 
-                </div>
+                </span>
 
 
                 <h1
+
                     style={{
+
+                        margin:
+                            "20px 0 15px",
+
                         fontSize:
-                            "clamp(32px, 5vw, 60px)",
+                            "clamp(30px, 5vw, 55px)",
 
-                        fontWeight: 400,
+                        fontWeight:
+                            500,
 
-                        margin: 0,
                     }}
+
                 >
 
                     Sua aventura começa agora.
@@ -275,22 +305,31 @@ function DashboardPlaceholder() {
 
 
                 <p
-                    style={{
-                        marginTop: "20px",
 
-                        opacity: 0.65,
+                    style={{
+
+                        margin:
+                            0,
+
+                        maxWidth:
+                            "550px",
+
+                        color:
+                            "rgba(255,255,255,0.55)",
 
                         fontFamily:
-                            "Inter, sans-serif",
+                            "Arial, sans-serif",
 
-                        fontSize: "14px",
+                        lineHeight:
+                            1.7,
 
-                        lineHeight: 1.7,
                     }}
+
                 >
 
-                    O dashboard principal será
-                    construído no próximo módulo.
+                    A verdadeira Home do Ordo RPGistas será construída
+                    aqui. É nela que o jogador poderá acessar campanhas,
+                    personagens, mapas, mesas e todas as ferramentas.
 
                 </p>
 
@@ -299,12 +338,9 @@ function DashboardPlaceholder() {
         </motion.main>
 
     );
+
 }
 
-
-/* =========================================
-   APP PRINCIPAL
-========================================= */
 
 function App() {
 
@@ -321,6 +357,7 @@ function App() {
         </ThemeProvider>
 
     );
+
 }
 
 
