@@ -4,10 +4,14 @@ import {
     useState,
 } from "react";
 
-const UserContext = createContext();
+const UserContext =
+    createContext();
 
-export function UserProvider({ children }) {
-    const [user, setUser] = useState(null);
+export function UserProvider({
+    children,
+}) {
+    const [user, setUser] =
+        useState(null);
 
     function login(userData) {
         setUser(userData);
@@ -21,9 +25,9 @@ export function UserProvider({ children }) {
         <UserContext.Provider
             value={{
                 user,
+                setUser,
                 login,
                 logout,
-                setUser,
             }}
         >
             {children}
@@ -32,11 +36,12 @@ export function UserProvider({ children }) {
 }
 
 export function useUser() {
-    const context = useContext(UserContext);
+    const context =
+        useContext(UserContext);
 
     if (!context) {
         throw new Error(
-            "useUser deve ser usado dentro de UserProvider"
+            "useUser deve estar dentro de UserProvider."
         );
     }
 
