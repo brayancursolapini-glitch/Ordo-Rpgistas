@@ -12,22 +12,23 @@ import Login from "./pages/Login/Login";
 import Cadastro from "./pages/Cadastro/Cadastro";
 
 function AppContent() {
-    const [page, setPage] =
-        useState("home");
+    const [page, setPage] = useState("landing");
 
     return (
         <>
             <IntroLoader />
 
             <AnimatePresence mode="wait">
-                {page === "home" && (
+
+                {/* LANDING PAGE - PRIMEIRA TELA */}
+                {page === "landing" && (
                     <motion.div
-                        key="home"
+                        key="landing"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
-                        <Home
+                        <Landing
                             onLogin={() =>
                                 setPage("login")
                             }
@@ -40,32 +41,54 @@ function AppContent() {
                     </motion.div>
                 )}
 
+
+                {/* LOGIN */}
                 {page === "login" && (
-                    <Login
-                        onBack={() =>
-                            setPage("home")
-                        }
-                    />
+                    <motion.div
+                        key="login"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <Login
+                            onBack={() =>
+                                setPage("landing")
+                            }
+                        />
+                    </motion.div>
                 )}
 
+
+                {/* CADASTRO */}
                 {page === "cadastro" && (
-                    <Cadastro
-                        onBack={() =>
-                            setPage("home")
-                        }
-                        onComplete={() =>
-                            setPage("dashboard")
-                        }
-                    />
+                    <motion.div
+                        key="cadastro"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <Cadastro
+                            onBack={() =>
+                                setPage("landing")
+                            }
+                            onComplete={() =>
+                                setPage("dashboard")
+                            }
+                        />
+                    </motion.div>
                 )}
 
+
+                {/* HOME REAL DO USUÁRIO */}
                 {page === "dashboard" && (
                     <DashboardPlaceholder />
                 )}
+
             </AnimatePresence>
         </>
     );
 }
+
 
 function DashboardPlaceholder() {
     return (
@@ -83,6 +106,7 @@ function DashboardPlaceholder() {
             animate={{ opacity: 1 }}
         >
             <div>
+
                 <div
                     style={{
                         color: "#d7ae57",
@@ -111,13 +135,15 @@ function DashboardPlaceholder() {
                         fontSize: 12,
                     }}
                 >
-                    Dashboard será construído
-                    no próximo módulo.
+                    A verdadeira Home do Ordo RPGistas
+                    será construída no próximo módulo.
                 </p>
+
             </div>
         </motion.div>
     );
 }
+
 
 function App() {
     return (
