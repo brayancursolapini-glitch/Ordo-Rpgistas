@@ -1,33 +1,63 @@
 import { motion } from "framer-motion";
-import { Moon, Shield } from "lucide-react";
+
+import {
+    Crown,
+    Eye,
+} from "lucide-react";
+
 import { useTheme } from "../../context/ThemeContext";
 
+import "./ThemeSwitcher.css";
+
 export default function ThemeSwitcher() {
-    const { theme, setTheme } = useTheme();
+    const {
+        theme,
+        toggleTheme,
+    } = useTheme();
+
+    const isDnd =
+        theme === "dnd";
 
     return (
-        <div className="theme-switcher">
-            <motion.button
-                className={`theme-option ${
-                    theme === "dnd" ? "active" : ""
-                }`}
-                onClick={() => setTheme("dnd")}
-                whileTap={{ scale: 0.9 }}
-            >
-                <Shield size={18} />
-                <span>D&D</span>
-            </motion.button>
+        <motion.button
+            className={`theme-switcher ${
+                isDnd
+                    ? "dnd"
+                    : "ordem"
+            }`}
+            onClick={toggleTheme}
+            whileTap={{
+                scale: 0.95,
+            }}
+        >
+            <div className="theme-switcher-icon">
 
-            <motion.button
-                className={`theme-option ${
-                    theme === "ordem" ? "active" : ""
-                }`}
-                onClick={() => setTheme("ordem")}
-                whileTap={{ scale: 0.9 }}
-            >
-                <Moon size={18} />
-                <span>Ordem</span>
-            </motion.button>
-        </div>
+                {isDnd
+                    ? (
+                        <Crown size={18} />
+                    )
+                    : (
+                        <Eye size={18} />
+                    )}
+
+            </div>
+
+            <div className="theme-switcher-text">
+
+                <span>
+                    SISTEMA
+                </span>
+
+                <strong>
+
+                    {isDnd
+                        ? "D&D"
+                        : "ORDEM"}
+
+                </strong>
+
+            </div>
+
+        </motion.button>
     );
 }
