@@ -5,13 +5,14 @@ import {
     User,
     Mail,
     Lock,
-    Eye,
-    EyeOff,
-    ShieldCheck,
     UserPlus,
 } from "lucide-react";
 
-import { useState } from "react";
+import {
+    useState,
+} from "react";
+
+import { useUser } from "../../context/UserContext";
 
 import "./Cadastro.css";
 
@@ -19,12 +20,6 @@ export default function Cadastro({
     onBack,
     onComplete,
 }) {
-    const [showPassword, setShowPassword] =
-        useState(false);
-
-    const [showConfirmPassword, setShowConfirmPassword] =
-        useState(false);
-
     const [username, setUsername] =
         useState("");
 
@@ -37,93 +32,109 @@ export default function Cadastro({
     const [confirmPassword, setConfirmPassword] =
         useState("");
 
+    const [error, setError] =
+        useState("");
+
+    const { login } = useUser();
+
     function handleSubmit(event) {
         event.preventDefault();
 
-        if (
-            !username ||
-            !email ||
-            !password ||
-            !confirmPassword
-        ) {
-            alert(
-                "Preencha todos os campos."
+        setError("");
+
+        if (!username.trim()) {
+            setError(
+                "Digite um nome de usuário."
+            );
+
+            return;
+        }
+
+        if (!email.trim()) {
+            setError(
+                "Digite seu e-mail."
+            );
+
+            return;
+        }
+
+        if (password.length < 4) {
+            setError(
+                "A senha precisa ter pelo menos 4 caracteres."
             );
 
             return;
         }
 
         if (password !== confirmPassword) {
-            alert(
-                "As senhas não coincidem."
+            setError(
+                "As senhas não são iguais."
             );
 
             return;
         }
 
         /*
-            MAIS PARA FRENTE:
+            FUTURAMENTE:
 
-            Aqui vamos conectar o cadastro
-            ao banco de dados.
+            Aqui será enviado o cadastro
+            para o backend.
 
-            Também vamos implementar:
-
-            - Nome de usuário único
-            - E-mail único
-            - Criptografia de senha
-            - Verificação por e-mail
-            - Autenticação em duas etapas
+            Por enquanto apenas criamos
+            o usuário localmente.
         */
 
-        if (onComplete) {
-            onComplete();
-        }
+        const newUser = {
+            name: username,
+            username,
+            email,
+            avatar: null,
+        };
+
+        login(newUser);
+
+        onComplete();
     }
 
     return (
         <main className="cadastro-page">
 
-            <motion.div
-                className="cadastro-background"
-                initial={{
-                    opacity: 0,
-                }}
-                animate={{
-                    opacity: 1,
-                }}
-            />
-
+            <div className="cadastro-background" />
 
             <motion.section
-                className="cadastro-container"
+                className="cadastro-card"
+
                 initial={{
                     opacity: 0,
                     y: 30,
                 }}
+
                 animate={{
                     opacity: 1,
                     y: 0,
                 }}
+
                 transition={{
-                    duration: 0.6,
+                    duration: 0.5,
                 }}
             >
 
                 <button
-                    className="back-button"
+                    className="cadastro-back"
                     onClick={onBack}
                 >
-                    <ArrowLeft size={20} />
+
+                    <ArrowLeft size={18} />
 
                     Voltar
+
                 </button>
 
 
                 <div className="cadastro-header">
 
-                    <span className="cadastro-small-title">
-                        COMECE SUA JORNADA
+                    <span>
+                        SUA JORNADA COMEÇA AGORA
                     </span>
 
                     <h1>
@@ -131,9 +142,20 @@ export default function Cadastro({
                     </h1>
 
                     <p>
-                        Crie seu perfil e comece
-                        a escrever sua própria história.
+                        Crie seu personagem fora da história
+                        antes de criar um dentro dela.
                     </p>
+
+                </div>
+
+
+                <div className="cadastro-divider">
+
+                    <span />
+
+                    ✦
+
+                    <span />
 
                 </div>
 
@@ -143,20 +165,23 @@ export default function Cadastro({
                     onSubmit={handleSubmit}
                 >
 
-                    <div className="input-group">
+                    <label>
 
-                        <label>
-                            Nome de usuário
-                        </label>
+                        Nome de usuário
 
-                        <div className="input-wrapper">
+                        <div className="cadastro-input">
 
-                            <User size={19} />
+                            <User size={18} />
 
                             <input
                                 type="text"
-                                placeholder="Escolha seu nome"
+
+                                placeholder="
+                                Escolha seu nome de usuário
+                                "
+
                                 value={username}
+
                                 onChange={(event) =>
                                     setUsername(
                                         event.target.value
@@ -166,33 +191,26 @@ export default function Cadastro({
 
                         </div>
 
-                        <small className="username-warning">
-
-                            Escolha com cuidado.
-                            O nome de usuário poderá
-                            ser alterado futuramente
-                            apenas através das opções
-                            disponíveis na sua conta.
-
-                        </small>
-
-                    </div>
+                    </label>
 
 
-                    <div className="input-group">
+                    <label>
 
-                        <label>
-                            E-mail
-                        </label>
+                        E-mail
 
-                        <div className="input-wrapper">
+                        <div className="cadastro-input">
 
-                            <Mail size={19} />
+                            <Mail size={18} />
 
                             <input
                                 type="email"
-                                placeholder="Digite seu e-mail"
+
+                                placeholder="
+                                Digite seu e-mail
+                                "
+
                                 value={email}
+
                                 onChange={(event) =>
                                     setEmail(
                                         event.target.value
@@ -202,27 +220,26 @@ export default function Cadastro({
 
                         </div>
 
-                    </div>
+                    </label>
 
 
-                    <div className="input-group">
+                    <label>
 
-                        <label>
-                            Senha
-                        </label>
+                        Senha
 
-                        <div className="input-wrapper">
+                        <div className="cadastro-input">
 
-                            <Lock size={19} />
+                            <Lock size={18} />
 
                             <input
-                                type={
-                                    showPassword
-                                        ? "text"
-                                        : "password"
-                                }
-                                placeholder="Crie uma senha"
+                                type="password"
+
+                                placeholder="
+                                Crie uma senha
+                                "
+
                                 value={password}
+
                                 onChange={(event) =>
                                     setPassword(
                                         event.target.value
@@ -230,51 +247,28 @@ export default function Cadastro({
                                 }
                             />
 
-                            <button
-                                type="button"
-                                className="password-toggle"
-                                onClick={() =>
-                                    setShowPassword(
-                                        !showPassword
-                                    )
-                                }
-                            >
-                                {showPassword
-                                    ? (
-                                        <EyeOff
-                                            size={19}
-                                        />
-                                    )
-                                    : (
-                                        <Eye
-                                            size={19}
-                                        />
-                                    )}
-                            </button>
-
                         </div>
 
-                    </div>
+                    </label>
 
 
-                    <div className="input-group">
+                    <label>
 
-                        <label>
-                            Confirmar senha
-                        </label>
+                        Confirmar senha
 
-                        <div className="input-wrapper">
+                        <div className="cadastro-input">
 
-                            <Lock size={19} />
+                            <Lock size={18} />
 
                             <input
-                                type={
-                                    showConfirmPassword
-                                        ? "text"
-                                        : "password"
-                                }
-                                placeholder="Digite sua senha novamente"
+                                type="password"
+
+                                placeholder="
+                                Digite novamente sua senha
+                                "
+
                                 value={confirmPassword}
+
                                 onChange={(event) =>
                                     setConfirmPassword(
                                         event.target.value
@@ -282,80 +276,44 @@ export default function Cadastro({
                                 }
                             />
 
-                            <button
-                                type="button"
-                                className="password-toggle"
-                                onClick={() =>
-                                    setShowConfirmPassword(
-                                        !showConfirmPassword
-                                    )
-                                }
-                            >
-                                {showConfirmPassword
-                                    ? (
-                                        <EyeOff
-                                            size={19}
-                                        />
-                                    )
-                                    : (
-                                        <Eye
-                                            size={19}
-                                        />
-                                    )}
-                            </button>
-
                         </div>
 
-                    </div>
+                    </label>
 
 
-                    <div className="security-info">
+                    {error && (
 
-                        <ShieldCheck
-                            size={20}
-                        />
+                        <div className="cadastro-error">
+                            {error}
+                        </div>
 
-                        <p>
-                            Sua conta será protegida
-                            e posteriormente poderá
-                            utilizar autenticação
-                            em duas etapas.
-                        </p>
-
-                    </div>
+                    )}
 
 
-                    <motion.button
+                    <button
                         type="submit"
                         className="cadastro-submit"
-                        whileHover={{
-                            scale: 1.02,
-                        }}
-                        whileTap={{
-                            scale: 0.98,
-                        }}
                     >
 
-                        <UserPlus size={20} />
+                        <UserPlus size={18} />
 
                         Criar minha conta
 
-                    </motion.button>
+                    </button>
 
                 </form>
 
 
                 <div className="cadastro-footer">
 
-                    <span>
+                    <p>
                         Já possui uma conta?
-                    </span>
+                    </p>
 
                     <button
-                        type="button"
                         onClick={onBack}
                     >
-                        Entrar
+                        Fazer login
                     </button>
 
                 </div>
