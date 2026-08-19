@@ -1,28 +1,50 @@
 /* =========================================================
    ORDO RPGISTAS
-   HOME / TELA INICIAL
-========================================================= */
+   TELA INICIAL / LANDING PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   RESET LOCAL
+   ========================================================= */
+
+.home,
+.home * {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+   ========================================================= */
 
 .home {
     position: relative;
+
     width: 100%;
-    height: 100vh;
-    min-height: 700px;
+    min-height: 100vh;
+
     overflow: hidden;
 
-    background: #050505;
-    color: #ffffff;
+    background:
+        #050607;
 
-    font-family: Georgia, "Times New Roman", serif;
+    color:
+        #ffffff;
+
+    font-family:
+        "Georgia",
+        serif;
 }
 
 
 /* =========================================================
    FUNDO PRINCIPAL
-========================================================= */
+   ========================================================= */
 
 .home-background {
     position: absolute;
+
     inset: 0;
 
     display: flex;
@@ -35,612 +57,480 @@
 
 
 /* =========================================================
-   MUNDOS
-========================================================= */
+   CADA METADE DO MUNDO
+   ========================================================= */
 
 .world {
     position: relative;
 
     width: 50%;
-    height: 100%;
+    height: 100vh;
 
     overflow: hidden;
 
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-position:
+        center;
+
+    background-size:
+        cover;
+
+    background-repeat:
+        no-repeat;
 
     transition:
-        width 1.2s ease,
-        filter 1.2s ease,
-        transform 1.2s ease;
+        filter 0.5s ease,
+        transform 0.5s ease;
 }
 
 
 /* =========================================================
-   FUNDO D&D
-========================================================= */
+   DUNGEONS & DRAGONS
+   ========================================================= */
 
 .world-dnd {
-    background:
-        linear-gradient(
-            180deg,
-            rgba(7, 12, 8, 0.15),
-            rgba(4, 8, 5, 0.95)
-        ),
-        radial-gradient(
-            circle at 50% 30%,
-            #405f36 0%,
-            #1d3420 35%,
-            #09100a 100%
-        );
+    background-color:
+        #07150e;
+
+    background-position:
+        center;
 }
 
 
 /* =========================================================
-   FUNDO ORDEM PARANORMAL
-========================================================= */
+   ORDEM PARANORMAL
+   ========================================================= */
 
 .world-ordem {
-    background:
-        radial-gradient(
-            circle at 50% 30%,
-            rgba(90, 30, 100, 0.45),
-            transparent 40%
-        ),
-        linear-gradient(
-            135deg,
-            #050508 0%,
-            #160d1c 45%,
-            #080509 100%
-        );
+    background-color:
+        #140918;
+
+    background-position:
+        center;
 }
 
 
 /* =========================================================
-   FUTURAS IMAGENS
-========================================================= */
-
-/*
-.world-dnd {
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.75)
-        ),
-        url("/images/dnd-background.jpg");
-}
-
-.world-ordem {
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.75)
-        ),
-        url("/images/ordem-background.jpg");
-}
-*/
-
-
-/* =========================================================
-   OVERLAY
-========================================================= */
+   SOMBRA / OVERLAY DAS IMAGENS
+   ========================================================= */
 
 .world-overlay {
     position: absolute;
+
     inset: 0;
 
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.05) 0%,
-            rgba(0, 0, 0, 0.20) 40%,
-            rgba(0, 0, 0, 0.85) 100%
-        );
+    z-index: 1;
 
     pointer-events: none;
 }
 
 
 /* =========================================================
-   CONTEÚDO DOS MUNDOS
-========================================================= */
+   OVERLAY D&D
 
-.world-content {
-    position: absolute;
+   Mantém a imagem visível, mas deixa o lado mais sombrio
+   para o texto aparecer.
+   ========================================================= */
 
-    left: 50%;
-    bottom: 12%;
+.world-dnd .world-overlay {
+    background:
 
-    width: 80%;
-    max-width: 500px;
+        linear-gradient(
+            to right,
 
-    transform: translateX(-50%);
+            rgba(2, 7, 4, 0.40),
 
-    text-align: center;
+            rgba(2, 7, 4, 0.15)
+        ),
 
-    z-index: 2;
+        linear-gradient(
+            to bottom,
+
+            rgba(0, 0, 0, 0.15),
+
+            rgba(0, 0, 0, 0.70)
+        );
 }
 
 
 /* =========================================================
-   LABEL
-========================================================= */
+   OVERLAY ORDEM
+   ========================================================= */
 
-.world-label {
-    display: block;
+.world-ordem .world-overlay {
+    background:
 
-    margin-bottom: 14px;
+        linear-gradient(
+            to left,
 
-    font-family: Arial, sans-serif;
+            rgba(15, 4, 20, 0.35),
 
-    font-size: 12px;
-    font-weight: 600;
+            rgba(5, 0, 8, 0.15)
+        ),
 
-    letter-spacing: 4px;
+        linear-gradient(
+            to bottom,
 
-    color: rgba(255, 255, 255, 0.75);
+            rgba(0, 0, 0, 0.15),
+
+            rgba(0, 0, 0, 0.70)
+        );
 }
 
 
 /* =========================================================
-   TÍTULO DOS MUNDOS
-========================================================= */
+   EFEITO DE ENCONTRO DOS DOIS MUNDOS
 
-.world-content h2 {
-    margin: 0 0 18px;
+   Isso cria uma transição mais bonita no centro.
+   ========================================================= */
 
-    font-size: clamp(32px, 4vw, 58px);
-
-    line-height: 0.95;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    text-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.9);
-}
-
-
-/* D&D */
-
-.world-dnd .world-content h2 {
-    color: #f1d38a;
-}
-
-
-/* ORDEM */
-
-.world-ordem .world-content h2 {
-    color: #d7d7d7;
-}
-
-
-/* =========================================================
-   DESCRIÇÃO DOS MUNDOS
-========================================================= */
-
-.world-content p {
-    margin: 0 auto 22px;
-
-    max-width: 420px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-    line-height: 1.7;
-
-    color: rgba(255, 255, 255, 0.82);
-}
-
-
-/* =========================================================
-   BOTÃO DOS MUNDOS
-========================================================= */
-
-.world-enter {
-    padding: 12px 28px;
-
-    border: 1px solid rgba(212, 167, 72, 0.7);
-
-    border-radius: 3px;
-
-    background: rgba(10, 10, 10, 0.65);
-
-    color: #ffffff;
-
-    font-family: Georgia, serif;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.3s ease,
-        color 0.3s ease,
-        box-shadow 0.3s ease,
-        transform 0.3s ease;
-}
-
-
-.world-enter:hover {
-    background: rgba(180, 130, 40, 0.2);
-
-    color: #f2cc72;
-
-    box-shadow:
-        0 0 25px rgba(212, 167, 72, 0.25);
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   DIVISÃO ENTRE OS MUNDOS
-========================================================= */
-
-.home-background::after {
+.world-dnd::after {
     content: "";
 
     position: absolute;
 
     top: 0;
-    bottom: 0;
-    left: 50%;
+    right: -1px;
 
-    width: 2px;
+    width: 140px;
+    height: 100%;
 
-    transform: translateX(-50%);
+    z-index: 2;
+
+    pointer-events: none;
 
     background:
+
         linear-gradient(
+            to right,
+
             transparent,
-            rgba(212, 167, 72, 0.55),
-            transparent
+
+            rgba(8, 5, 8, 0.15),
+
+            rgba(0, 0, 0, 0.45)
         );
-
-    box-shadow:
-        0 0 20px rgba(212, 167, 72, 0.25);
-
-    z-index: 4;
 }
 
 
-/* =========================================================
-   PAINEL CENTRAL
-========================================================= */
+.world-ordem::after {
+    content: "";
 
-.hero {
     position: absolute;
 
-    /* sobe o painel central */
-    top: 42%;
-    left: 50%;
+    top: 0;
+    left: -1px;
 
-    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 100%;
 
-    width: min(780px, 90vw);
-    padding: 42px 55px;
+    z-index: 2;
 
-    text-align: center;
-
-    z-index: 20;
+    pointer-events: none;
 
     background:
+
         linear-gradient(
-            180deg,
-            rgba(18, 14, 12, 0.97),
-            rgba(5, 5, 5, 0.96)
-        );
+            to left,
 
-    border: 1px solid rgba(212, 164, 55, 0.35);
+            transparent,
 
-    box-shadow:
-        0 0 40px rgba(0, 0, 0, 0.7),
-        0 0 80px rgba(212, 164, 55, 0.08);
+            rgba(8, 5, 8, 0.15),
 
-    backdrop-filter: blur(10px);
-}
-
-
-/* =========================================================
-   SÍMBOLO
-========================================================= */
-
-.hero-symbol {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 18px;
-
-    color: #d9a93f;
-
-    filter:
-        drop-shadow(
-            0 0 8px rgba(217, 169, 63, 0.45)
+            rgba(0, 0, 0, 0.45)
         );
 }
 
 
-.hero-symbol svg {
-    width: 27px;
-    height: 27px;
-}
-
-
 /* =========================================================
-   BEM-VINDO
-========================================================= */
+   CONTEÚDO DOS MUNDOS
+   ========================================================= */
 
-.hero-welcome {
-    display: block;
+.world-content {
+    position: relative;
 
-    margin-bottom: 7px;
+    z-index: 3;
 
-    font-family: Arial, sans-serif;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    letter-spacing: 5px;
-
-    color: rgba(255, 255, 255, 0.65);
-}
-
-
-/* =========================================================
-   TÍTULO ORDO
-========================================================= */
-
-.hero-title {
     display: flex;
 
     flex-direction: column;
 
-    align-items: center;
     justify-content: center;
 
-    margin: 0;
+    height: 100%;
+
+    padding:
+        0 8vw;
+
+    max-width:
+        680px;
+}
+
+
+/* =========================================================
+   LADO D&D
+   ========================================================= */
+
+.world-dnd .world-content {
+    align-items:
+        flex-start;
+
+    text-align:
+        left;
+
+    padding-top:
+        3vh;
+}
+
+
+/* =========================================================
+   LADO ORDEM
+   ========================================================= */
+
+.world-ordem .world-content {
+    align-items:
+        flex-end;
+
+    text-align:
+        right;
+
+    margin-left:
+        auto;
+
+    padding-top:
+        3vh;
+}
+
+
+/* =========================================================
+   TEXTO PEQUENO DOS MUNDOS
+   ========================================================= */
+
+.world-label {
+    display: block;
+
+    margin-bottom:
+        18px;
+
+    color:
+        #d5d8d7;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.45em;
+
+    text-transform:
+        uppercase;
+
+    opacity:
+        0.9;
+}
+
+
+/* =========================================================
+   TÍTULOS DOS MUNDOS
+   ========================================================= */
+
+.world-content h2 {
+    margin:
+        0;
+
+    color:
+        #f2d48b;
+
+    font-size:
+        clamp(3rem, 4.7vw, 6rem);
+
+    font-weight:
+        700;
+
+    line-height:
+        0.92;
+
+    letter-spacing:
+        0.03em;
+
+    text-shadow:
+
+        0 4px 25px
+        rgba(0, 0, 0, 0.8);
+}
+
+
+/* =========================================================
+   PARÁGRAFO DOS MUNDOS
+   ========================================================= */
+
+.world-content p {
+    max-width:
+        460px;
+
+    margin:
+
+        26px 0
+        30px;
+
+    color:
+        #d9d9d9;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.7;
+
+    text-shadow:
+
+        0 2px 10px
+        rgba(0, 0, 0, 0.9);
+}
+
+
+/* =========================================================
+   BOTÃO ENTRAR NO MUNDO
+   ========================================================= */
+
+.world-enter {
+    position: relative;
+
+    padding:
+
+        15px 30px;
+
+    min-width:
+        180px;
+
+    border:
+
+        1px solid
+        rgba(203, 147, 43, 0.75);
+
+    border-radius:
+        4px;
+
+    background:
+
+        rgba(10, 8, 8, 0.65);
+
+    color:
+        #f2dfad;
 
     font-family:
         Georgia,
-        "Times New Roman",
         serif;
 
-    font-size: clamp(52px, 7vw, 78px);
+    font-size:
+        0.95rem;
 
-    font-weight: 400;
+    font-weight:
+        600;
 
-    line-height: 0.9;
+    letter-spacing:
+        0.04em;
 
-    letter-spacing: 6px;
-
-    color: #ffffff;
-
-    text-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.6);
-}
-
-
-/* =========================================================
-   RPGISTAS
-========================================================= */
-
-.hero-subtitle {
-    display: block;
-
-    margin-top: 12px;
-
-    font-size: clamp(19px, 3vw, 28px);
-
-    font-weight: 600;
-
-    letter-spacing: 11px;
-
-    color: #d8aa42;
-
-    text-indent: 11px;
-}
-
-
-/* =========================================================
-   FRASE
-========================================================= */
-
-.hero-tagline {
-    margin: 18px 0 22px;
-
-    font-size: 17px;
-
-    color: rgba(255, 255, 255, 0.82);
-}
-
-
-/* =========================================================
-   DIVISOR
-========================================================= */
-
-.hero-divider {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-
-    width: 100%;
-
-    margin: 0 auto 23px;
-
-    color: #d5a73d;
-}
-
-
-.hero-divider span {
-    display: block;
-
-    width: 70px;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(213, 167, 61, 0.7)
-        );
-}
-
-
-.hero-divider span:last-child {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(213, 167, 61, 0.7),
-            transparent
-        );
-}
-
-
-/* =========================================================
-   DESCRIÇÃO CENTRAL
-========================================================= */
-
-.hero-description {
-    margin: 0 auto 28px;
-
-    max-width: 430px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-
-    color: rgba(255, 255, 255, 0.70);
-}
-
-
-/* =========================================================
-   BOTÕES CENTRAIS
-========================================================= */
-
-.hero-actions {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
-}
-
-
-/* =========================================================
-   AÇÕES SUPERIORES
-========================================================= */
-
-.top-actions {
-    position: absolute;
-
-    top: 25px;
-    right: 28px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    z-index: 100;
-}
-
-
-/* =========================================================
-   BOTÃO LOGIN
-========================================================= */
-
-.login-button {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 12px 20px;
-
-    border: 1px solid rgba(255, 255, 255, 0.18);
-
-    border-radius: 4px;
-
-    background: rgba(5, 5, 5, 0.75);
-
-    color: #ffffff;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
-    backdrop-filter: blur(8px);
+    cursor:
+        pointer;
 
     transition:
-        background 0.3s ease,
-        border 0.3s ease;
+
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 
-.login-button:hover {
-    background: rgba(255, 255, 255, 0.08);
+.world-enter:hover {
+    transform:
+        translateY(-3px);
 
-    border-color: rgba(212, 167, 72, 0.6);
+    background:
+
+        rgba(145, 95, 25, 0.22);
+
+    border-color:
+        #e7b84e;
+
+    box-shadow:
+
+        0 0 25px
+        rgba(209, 151, 42, 0.25);
+}
+
+
+.world-enter:active {
+    transform:
+        translateY(0);
 }
 
 
 /* =========================================================
    PARTÍCULAS
-========================================================= */
+   ========================================================= */
 
 .particles {
     position: absolute;
 
     inset: 0;
 
+    z-index: 4;
+
     overflow: hidden;
 
     pointer-events: none;
-
-    z-index: 10;
 }
 
 
 .particle {
     position: absolute;
 
-    left: var(--left);
-    bottom: -20px;
+    left:
+        var(--left);
 
-    width: 3px;
-    height: 3px;
+    bottom:
+        -20px;
 
-    border-radius: 50%;
+    width:
+        3px;
 
-    background: rgba(218, 176, 75, 0.8);
+    height:
+        3px;
+
+    border-radius:
+        50%;
+
+    background:
+        #e5b94e;
+
+    opacity:
+        0.7;
 
     box-shadow:
-        0 0 8px rgba(218, 176, 75, 0.8);
+
+        0 0 8px
+        rgba(229, 185, 78, 0.9);
 
     animation:
+
         particleFloat
         var(--duration)
         linear
-        var(--delay)
         infinite;
+
+    animation-delay:
+        var(--delay);
 }
 
 
@@ -648,245 +538,886 @@
 
     0% {
         transform:
+
             translateY(0)
             translateX(0);
 
-        opacity: 0;
+        opacity:
+            0;
     }
 
-    10% {
-        opacity: 1;
-    }
-
-    80% {
-        opacity: 0.7;
+    15% {
+        opacity:
+            0.8;
     }
 
     100% {
         transform:
-            translateY(-110vh)
-            translateX(40px);
 
-        opacity: 0;
+            translateY(-110vh)
+            translateX(35px);
+
+        opacity:
+            0;
     }
+
+}
+
+
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+
+.home > .side-menu,
+.home > nav {
+    z-index:
+        50;
+}
+
+
+/* =========================================================
+   AÇÕES SUPERIORES
+
+   D&D / ORDEM + ENTRAR
+   ========================================================= */
+
+.top-actions {
+    position: fixed;
+
+    top:
+        28px;
+
+    right:
+        32px;
+
+    z-index:
+        100;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+}
+
+
+/* =========================================================
+   BOTÃO DE ENTRAR
+   ========================================================= */
+
+.login-button {
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        9px;
+
+    min-height:
+        46px;
+
+    padding:
+
+        0 22px;
+
+    border:
+
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    border-radius:
+        5px;
+
+    background:
+
+        rgba(8, 8, 10, 0.78);
+
+    color:
+        #f4f4f4;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        600;
+
+    cursor:
+        pointer;
+
+    backdrop-filter:
+        blur(12px);
+
+    transition:
+
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.login-button:hover {
+    background:
+
+        rgba(33, 27, 20, 0.95);
+
+    border-color:
+
+        rgba(218, 170, 68, 0.7);
+
+    box-shadow:
+
+        0 0 22px
+        rgba(214, 164, 58, 0.15);
+}
+
+
+/* =========================================================
+   CORREÇÃO GENÉRICA DO THEME SWITCHER
+
+   O componente continua controlando sua aparência interna,
+   mas garantimos que ele não fique esmagado ou desalinhado.
+   ========================================================= */
+
+.top-actions > * {
+    flex-shrink:
+        0;
+}
+
+
+/* =========================================================
+   PAINEL CENTRAL
+   ========================================================= */
+
+.hero {
+    position: absolute;
+
+    z-index:
+        30;
+
+    top:
+        43%;
+
+    left:
+        50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        min(90vw, 540px);
+
+    min-height:
+        480px;
+
+    padding:
+
+        38px 44px
+        34px;
+
+    text-align:
+        center;
+
+    border:
+
+        1px solid
+        rgba(194, 150, 59, 0.32);
+
+    border-radius:
+        4px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+
+            rgba(10, 10, 11, 0.96),
+
+            rgba(22, 17, 13, 0.92)
+        );
+
+    box-shadow:
+
+        0 25px 90px
+        rgba(0, 0, 0, 0.70),
+
+        0 0 50px
+        rgba(0, 0, 0, 0.45);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+/* =========================================================
+   SÍMBOLO
+   ========================================================= */
+
+.hero-symbol {
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-bottom:
+        18px;
+
+    color:
+        #d9ae4d;
+}
+
+
+.hero-symbol svg {
+    width:
+        31px;
+
+    height:
+        31px;
+
+    filter:
+
+        drop-shadow(
+            0 0 8px
+            rgba(217, 174, 77, 0.45)
+        );
+}
+
+
+/* =========================================================
+   BEM-VINDO
+   ========================================================= */
+
+.hero-welcome {
+    margin-bottom:
+        10px;
+
+    color:
+        #bdbdbd;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.5em;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================================================
+   TÍTULO ORDO RPGISTAS
+   ========================================================= */
+
+.hero-title {
+    display: flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    margin:
+        0;
+
+    color:
+        #f4f1ec;
+
+    font-size:
+        clamp(4rem, 6vw, 5.8rem);
+
+    font-weight:
+        500;
+
+    line-height:
+        0.85;
+
+    letter-spacing:
+        0.06em;
+
+    text-shadow:
+
+        0 3px 20px
+        rgba(0, 0, 0, 0.7);
+}
+
+
+.hero-subtitle {
+    margin-top:
+        15px;
+
+    color:
+        #d5ab54;
+
+    font-size:
+        clamp(1.5rem, 2.2vw, 2.2rem);
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        0.42em;
+
+    text-indent:
+        0.42em;
+}
+
+
+/* =========================================================
+   FRASE
+   ========================================================= */
+
+.hero-tagline {
+    margin:
+
+        22px 0
+        22px;
+
+    color:
+        #d6d6d6;
+
+    font-size:
+        1.05rem;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        0.02em;
+}
+
+
+/* =========================================================
+   DIVISOR
+   ========================================================= */
+
+.hero-divider {
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        13px;
+
+    width:
+        100%;
+
+    margin-bottom:
+        25px;
+
+    color:
+        #d4a94c;
+
+    font-size:
+        0.9rem;
+}
+
+
+.hero-divider span {
+    display: block;
+
+    width:
+        78px;
+
+    height:
+        1px;
+
+    background:
+
+        linear-gradient(
+            to right,
+
+            transparent,
+
+            rgba(213, 169, 76, 0.7)
+        );
+}
+
+
+.hero-divider span:last-child {
+    background:
+
+        linear-gradient(
+            to left,
+
+            transparent,
+
+            rgba(213, 169, 76, 0.7)
+        );
+}
+
+
+/* =========================================================
+   DESCRIÇÃO
+   ========================================================= */
+
+.hero-description {
+    max-width:
+        430px;
+
+    margin:
+
+        0 0
+        28px;
+
+    color:
+        #c4c4c4;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        0.9rem;
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================================================
+   BOTÕES DO HERO
+   ========================================================= */
+
+.hero-actions {
+    display: flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        14px;
+
+    width:
+        100%;
 }
 
 
 /* =========================================================
    EXPLORE
-========================================================= */
+   ========================================================= */
 
 .scroll-indicator {
     position: absolute;
 
-    bottom: 24px;
-    left: 50%;
+    z-index:
+        40;
 
-    transform: translateX(-50%);
+    left:
+        50%;
+
+    bottom:
+        24px;
+
+    transform:
+        translateX(-50%);
 
     display: flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 3px;
+    gap:
+        5px;
 
-    z-index: 30;
+    color:
+        #aaa;
 
-    color: rgba(255, 255, 255, 0.65);
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-family: Arial, sans-serif;
+    font-size:
+        0.6rem;
 
-    font-size: 10px;
+    font-weight:
+        700;
 
-    letter-spacing: 4px;
+    letter-spacing:
+        0.45em;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 }
 
 
 .scroll-indicator svg {
-    width: 17px;
-    height: 17px;
+    width:
+        22px;
+
+    height:
+        22px;
 
     animation:
-        scrollArrow
-        1.5s
+
+        arrowBounce
+        1.7s
         ease-in-out
         infinite;
 }
 
 
-@keyframes scrollArrow {
+@keyframes arrowBounce {
 
     0%,
     100% {
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 
     50% {
-        transform: translateY(5px);
+        transform:
+            translateY(7px);
     }
+
 }
 
 
 /* =========================================================
    SISTEMA ATUAL
-========================================================= */
+
+   Fica discreto no canto inferior direito.
+   ========================================================= */
 
 .theme-indicator {
     position: absolute;
 
-    right: 25px;
-    bottom: 23px;
+    z-index:
+        35;
+
+    right:
+        35px;
+
+    bottom:
+        26px;
 
     display: flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    align-items: flex-end;
+    align-items:
+        flex-end;
 
-    z-index: 30;
+    gap:
+        4px;
 
-    font-family: Arial, sans-serif;
+    pointer-events:
+        none;
 }
 
 
 .theme-indicator span {
-    font-size: 9px;
+    color:
+        #999;
 
-    letter-spacing: 3px;
+    font-family:
+        Arial,
+        sans-serif;
 
-    color: rgba(255, 255, 255, 0.45);
+    font-size:
+        0.55rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.35em;
 }
 
 
 .theme-indicator strong {
-    margin-top: 4px;
+    color:
+        #d5ab54;
 
-    font-size: 10px;
+    font-family:
+        Arial,
+        sans-serif;
 
-    letter-spacing: 2px;
+    font-size:
+        0.6rem;
 
-    color: #d5a73d;
+    letter-spacing:
+        0.2em;
 }
 
 
 /* =========================================================
-   RESPONSIVIDADE
-========================================================= */
+   TABLETS
+   ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
     .world-content {
-        bottom: 8%;
+        padding:
+            0 5vw;
+    }
+
+    .world-content h2 {
+        font-size:
+            clamp(2.6rem, 5vw, 4.5rem);
+    }
+
+    .hero {
+        width:
+            min(88vw, 500px);
+
+        padding:
+            32px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR / TABLET PEQUENO
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .home-background {
+        flex-direction:
+            column;
+    }
+
+    .world {
+        width:
+            100%;
+
+        height:
+            50vh;
+    }
+
+
+    .world-content {
+        justify-content:
+            center;
+
+        padding:
+            40px 30px;
+    }
+
+
+    .world-dnd .world-content {
+        align-items:
+            flex-start;
+
+        text-align:
+            left;
+    }
+
+
+    .world-ordem .world-content {
+        align-items:
+            flex-end;
+
+        text-align:
+            right;
     }
 
 
     .world-content h2 {
-        font-size: 35px;
+        font-size:
+            2.7rem;
     }
 
 
     .world-content p {
-        font-size: 12px;
+        display:
+            none;
     }
 
 
-    .hero {
-        width: min(480px, 86vw);
-
+    .world-enter {
         padding:
-            30px
-            30px
-            34px;
-    }
+            12px 20px;
 
-}
-
-
-/* =========================================================
-   CELULAR
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .home {
-        min-height: 650px;
-    }
-
-
-    .world-content {
-        display: none;
-    }
-
-
-    .world {
-        width: 50%;
-    }
-
-
-    .hero {
-        width: 90vw;
-
-        padding:
-            28px
-            20px
-            30px;
-    }
-
-
-    .hero-title {
-        font-size: 55px;
-    }
-
-
-    .hero-subtitle {
-        font-size: 18px;
-
-        letter-spacing: 7px;
-    }
-
-
-    .hero-description {
-        font-size: 12px;
+        min-width:
+            auto;
     }
 
 
     .top-actions {
-        top: 15px;
-        right: 15px;
+        top:
+            15px;
+
+        right:
+            15px;
+
+        gap:
+            8px;
     }
 
 
     .login-button {
-        padding: 10px 13px;
+        min-height:
+            42px;
+
+        padding:
+            0 15px;
     }
 
 
+    .hero {
+        top:
+            48%;
+
+        width:
+            calc(100% - 30px);
+
+        min-height:
+            auto;
+
+        padding:
+
+            28px 20px
+            26px;
+
+        transform:
+            translate(-50%, -50%);
+    }
+
+
+    .hero-symbol {
+        margin-bottom:
+            12px;
+    }
+
+
+    .hero-title {
+        font-size:
+            3.4rem;
+    }
+
+
+    .hero-subtitle {
+        font-size:
+            1.25rem;
+
+        letter-spacing:
+            0.28em;
+
+        text-indent:
+            0.28em;
+    }
+
+
+    .hero-description {
+        font-size:
+            0.82rem;
+
+        line-height:
+            1.6;
+    }
+
+
+    .hero-actions {
+        gap:
+            10px;
+    }
+
+
+    .scroll-indicator,
     .theme-indicator {
-        display: none;
-    }
-
-
-    .scroll-indicator {
-        display: none;
+        display:
+            none;
     }
 
 }
 
 
 /* =========================================================
-   TELAS BAIXAS
-========================================================= */
+   TELAS MUITO PEQUENAS
+   ========================================================= */
 
-@media (max-height: 650px) {
+@media (max-width: 480px) {
 
     .hero {
-        transform:
-            translate(-50%, -50%)
-            scale(0.85);
+        top:
+            50%;
+    }
+
+
+    .hero-title {
+        font-size:
+            2.9rem;
+    }
+
+
+    .hero-welcome {
+        font-size:
+            0.55rem;
+
+        letter-spacing:
+            0.32em;
+    }
+
+
+    .hero-tagline {
+        font-size:
+            0.9rem;
+    }
+
+
+    .hero-description {
+        margin-bottom:
+            20px;
+    }
+
+
+    .world-label {
+        font-size:
+            0.55rem;
+    }
+
+
+    .world-content h2 {
+        font-size:
+            2rem;
     }
 
 }
