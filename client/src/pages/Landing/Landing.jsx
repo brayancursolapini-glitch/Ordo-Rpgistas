@@ -177,21 +177,23 @@ export default function Landing({
             <motion.section
                 className="landing-hero"
 
-                initial={{
-                    opacity: 0,
-                    y: 30,
-                }}
+    initial={{
+        opacity: 0,
+        x: "-50%",
+        y: 30,
+    }}
 
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                }}
+    animate={{
+        opacity: 1,
+        x: "-50%",
+        y: 0,
+    }}
 
-                transition={{
-                    delay: 1.2,
-                    duration: 1,
-                }}
-            >
+    transition={{
+        delay: 1.8,
+        duration: 1,
+    }}
+>
 
                 <div className="landing-hero-symbol">
                     <Sparkles size={32} />
