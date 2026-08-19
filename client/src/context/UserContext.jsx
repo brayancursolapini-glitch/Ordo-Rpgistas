@@ -1,65 +1,29 @@
 import {
     createContext,
     useContext,
-    useEffect,
     useState,
 } from "react";
 
-const UserContext = createContext(null);
+const UserContext = createContext();
 
 export function UserProvider({ children }) {
     const [user, setUser] = useState(null);
 
-    const [firstVisit, setFirstVisit] = useState(() => {
-        return !localStorage.getItem(
-            "ordo-has-visited"
-        );
-    });
-
-    useEffect(() => {
-        const savedUser =
-            localStorage.getItem("ordo-user");
-
-        if (savedUser) {
-            try {
-                setUser(JSON.parse(savedUser));
-            } catch {
-                localStorage.removeItem("ordo-user");
-            }
-        }
-    }, []);
-
-    const completeFirstVisit = () => {
-        localStorage.setItem(
-            "ordo-has-visited",
-            "true"
-        );
-
-        setFirstVisit(false);
-    };
-
-    const login = (userData) => {
-        localStorage.setItem(
-            "ordo-user",
-            JSON.stringify(userData)
-        );
-
+    function login(userData) {
         setUser(userData);
-    };
+    }
 
-    const logout = () => {
-        localStorage.removeItem("ordo-user");
+    function logout() {
         setUser(null);
-    };
+    }
 
     return (
         <UserContext.Provider
             value={{
                 user,
-                firstVisit,
                 login,
                 logout,
-                completeFirstVisit,
+                setUser,
             }}
         >
             {children}
@@ -68,5 +32,13 @@ export function UserProvider({ children }) {
 }
 
 export function useUser() {
-    return useContext(UserContext);
+    const context = useContext(UserContext);
+
+    if (!context) {
+        throw new Error(
+            "useUser deve ser usado dentro de UserProvider"
+        );
+    }
+
+    return context;
 }
