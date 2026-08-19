@@ -1,153 +1,137 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+
 import {
     Menu,
     X,
-    Home,
-    Users,
+    User,
+    Sword,
     Map,
     BookOpen,
-    UserRound,
-    Sword,
     Search,
-    Settings,
-    Heart,
+    Users,
+    Dices,
 } from "lucide-react";
-import { useState } from "react";
 
-const menuItems = [
-    {
-        label: "Início",
-        icon: Home,
-    },
-    {
-        label: "Personagens",
-        icon: UserRound,
-    },
-    {
-        label: "Campanhas",
-        icon: Sword,
-    },
-    {
-        label: "Mapas",
-        icon: Map,
-    },
-    {
-        label: "Livros",
-        icon: BookOpen,
-    },
-    {
-        label: "Criar Tokens",
-        icon: Users,
-    },
-    {
-        label: "Buscar Jogadores",
-        icon: Search,
-    },
-    {
-        label: "Buscar Campanhas",
-        icon: Search,
-    },
-    {
-        label: "Configurações",
-        icon: Settings,
-    },
-    {
-        label: "Apoie o projeto",
-        icon: Heart,
-    },
-];
+import { motion, AnimatePresence } from "framer-motion";
+
+import "./SideMenu.css";
 
 export default function SideMenu() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] =
+        useState(false);
+
+    const menuItems = [
+        {
+            name: "Personagens",
+            icon: User,
+        },
+        {
+            name: "Campanhas",
+            icon: Sword,
+        },
+        {
+            name: "Mapa",
+            icon: Map,
+        },
+        {
+            name: "Livros",
+            icon: BookOpen,
+        },
+        {
+            name: "Criar Tokens",
+            icon: Dices,
+        },
+        {
+            name: "Buscar jogadores",
+            icon: Users,
+        },
+        {
+            name: "Buscar campanhas",
+            icon: Search,
+        },
+    ];
 
     return (
         <>
             <motion.button
-                className="menu-toggle"
-                onClick={() => setOpen(true)}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.9 }}
+                className="menu-trigger"
+                onClick={() =>
+                    setOpen(!open)
+                }
+                whileTap={{
+                    scale: 0.9,
+                }}
             >
-                <Menu size={25} />
+                {open
+                    ? <X size={23} />
+                    : <Menu size={23} />
+                }
             </motion.button>
 
             <AnimatePresence>
                 {open && (
-                    <>
-                        <motion.div
-                            className="menu-overlay"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setOpen(false)}
-                        />
+                    <motion.aside
+                        className="side-menu"
+                        initial={{
+                            x: -320,
+                            opacity: 0,
+                        }}
+                        animate={{
+                            x: 0,
+                            opacity: 1,
+                        }}
+                        exit={{
+                            x: -320,
+                            opacity: 0,
+                        }}
+                        transition={{
+                            type: "spring",
+                            damping: 22,
+                            stiffness: 220,
+                        }}
+                    >
+                        <div className="side-menu-header">
 
-                        <motion.aside
-                            className="side-menu"
-                            initial={{
-                                x: "-100%",
-                            }}
-                            animate={{
-                                x: 0,
-                            }}
-                            exit={{
-                                x: "-100%",
-                            }}
-                            transition={{
-                                type: "spring",
-                                damping: 25,
-                                stiffness: 200,
-                            }}
-                        >
-                            <div className="side-menu-header">
-                                <div>
-                                    <small>ORDO</small>
-                                    <h2>RPGISTAS</h2>
-                                </div>
+                            <span>
+                                ORDO
+                            </span>
 
-                                <button
-                                    onClick={() =>
-                                        setOpen(false)
-                                    }
-                                >
-                                    <X size={24} />
-                                </button>
-                            </div>
+                            <strong>
+                                RPGISTAS
+                            </strong>
 
-                            <nav>
-                                {menuItems.map(
-                                    (item) => {
-                                        const Icon =
-                                            item.icon;
+                        </div>
 
-                                        return (
-                                            <motion.button
-                                                key={
-                                                    item.label
-                                                }
-                                                className="menu-item"
-                                                whileHover={{
-                                                    x: 8,
-                                                }}
-                                            >
-                                                <Icon
-                                                    size={
-                                                        20
-                                                    }
-                                                />
+                        <div className="side-menu-divider">
+                            ✦
+                        </div>
 
-                                                <span>
-                                                    {
-                                                        item.label
-                                                    }
-                                                </span>
-                                            </motion.button>
-                                        );
-                                    }
-                                )}
-                            </nav>
-                        </motion.aside>
-                    </>
+                        <nav className="side-menu-items">
+
+                            {menuItems.map(
+                                ({
+                                    name,
+                                    icon: Icon,
+                                }) => (
+                                    <button
+                                        key={name}
+                                        className="side-menu-item"
+                                        onClick={() =>
+                                            setOpen(false)
+                                        }
+                                    >
+                                        <Icon size={19} />
+
+                                        <span>
+                                            {name}
+                                        </span>
+                                    </button>
+                                )
+                            )}
+
+                        </nav>
+
+                    </motion.aside>
                 )}
             </AnimatePresence>
         </>
