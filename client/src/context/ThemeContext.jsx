@@ -1,24 +1,15 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState(() => {
-        return localStorage.getItem("ordo-theme") || "dnd";
-    });
-
-    useEffect(() => {
-        localStorage.setItem("ordo-theme", theme);
-
-        document.documentElement.setAttribute(
-            "data-theme",
-            theme
-        );
-    }, [theme]);
+    const [theme, setTheme] = useState("dnd");
 
     const toggleTheme = () => {
-        setTheme((current) =>
-            current === "dnd" ? "ordem" : "dnd"
+        setTheme((currentTheme) =>
+            currentTheme === "dnd"
+                ? "ordem"
+                : "dnd"
         );
     };
 
@@ -36,5 +27,13 @@ export function ThemeProvider({ children }) {
 }
 
 export function useTheme() {
-    return useContext(ThemeContext);
+    const context = useContext(ThemeContext);
+
+    if (!context) {
+        throw new Error(
+            "useTheme deve ser usado dentro de ThemeProvider"
+        );
+    }
+
+    return context;
 }
